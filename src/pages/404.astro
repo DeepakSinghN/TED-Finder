@@ -1,0 +1,86 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+---
+
+<Layout
+  title="404 — Page Not Found | TED Talk Finder"
+  description="Oops! This page doesn't exist. Head back to TED Talk Finder and discover the best TED talks on any topic."
+  canonicalUrl="https://tedtalksfinder.com/404"
+>
+  <Header activePage="none" />
+
+  <main class="flex-grow bg-black text-white flex flex-col items-center justify-center text-center px-6 py-24 sm:py-36 min-h-[70vh]">
+    <!-- Ambient glow -->
+    <div
+      class="absolute inset-0 pointer-events-none"
+      aria-hidden="true"
+      style="background: radial-gradient(ellipse 50% 40% at 50% 60%, rgba(235,0,40,0.15) 0%, transparent 70%);"
+    ></div>
+
+    <!-- Mic with ripple -->
+    <div class="relative flex items-center justify-center mb-8">
+      <span class="err-ring"></span>
+      <span class="err-ring" style="animation-delay: 0.9s; border-color: rgba(235,0,40,0.2);"></span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="relative z-10 w-14 h-14 sm:w-16 sm:h-16 text-[#EB0028] err-mic"
+        aria-hidden="true"
+      >
+        <path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4z"/>
+        <path d="M19 11a1 1 0 1 0-2 0 5 5 0 0 1-10 0 1 1 0 1 0-2 0 7 7 0 0 0 6 6.92V21H9a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-2v-3.08A7 7 0 0 0 19 11z"/>
+      </svg>
+    </div>
+
+    <!-- Error code -->
+    <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#EB0028] mb-3">Error 404</p>
+
+    <!-- Heading -->
+    <h1 class="text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-tight leading-none mb-4">
+      Page Not<br /><span class="text-[#EB0028]">Found</span>
+    </h1>
+
+    <!-- Subtext -->
+    <p class="text-gray-400 text-sm sm:text-base max-w-md leading-relaxed mb-10">
+      Looks like this talk doesn't exist. Maybe the idea hasn't been spread yet — head back and find one that has.
+    </p>
+
+    <!-- CTA -->
+    <a
+      href="/"
+      class="bg-[#EB0028] text-white font-bold uppercase tracking-wider text-xs sm:text-sm px-8 py-3.5 hover:bg-[#c40020] transition-colors duration-150"
+    >
+      Back to TED Talk Finder
+    </a>
+  </main>
+
+  <!-- Minimal footer -->
+  <footer class="bg-black border-t border-gray-900 py-6 px-6 text-center text-[10px] text-gray-600">
+    &copy; 2026 TED Talk Finder &mdash;
+    <a href="/" class="hover:text-white transition-colors duration-150">Home</a> &middot;
+    <a href="/contact" class="hover:text-white transition-colors duration-150">Contact</a>
+  </footer>
+</Layout>
+
+<style>
+  .err-ring {
+    position: absolute;
+    width: 72px; height: 72px;
+    border-radius: 50%;
+    border: 1.5px solid rgba(235, 0, 40, 0.45);
+    animation: errRipple 2.4s ease-out infinite;
+  }
+  @keyframes errRipple {
+    0%   { transform: scale(0.9); opacity: 1; }
+    100% { transform: scale(2.8); opacity: 0; }
+  }
+  .err-mic {
+    animation: errMic 1.8s ease-in-out infinite;
+  }
+  @keyframes errMic {
+    0%, 100% { filter: drop-shadow(0 0 6px rgba(235,0,40,0.5)); }
+    50%       { filter: drop-shadow(0 0 20px rgba(235,0,40,0.9)); transform: scale(1.06); }
+  }
+</style>

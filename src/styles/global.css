@@ -1,0 +1,35 @@
+@import "tailwindcss";
+
+@theme {
+  --color-ted-red: #EB0028;
+  --color-gray-900: #1A1A1A;
+  --color-gray-600: #5F5F5F;
+  --color-gray-300: #D8D8D8;
+  --color-gray-100: #F4F4F4;
+  --font-sans: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+@layer base {
+  html, body {
+    background-color: var(--color-white);
+    color: var(--color-black);
+    font-family: var(--font-sans);
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Custom input focus style matching the design guide */
+  input:focus, textarea:focus, select:focus {
+    outline: 2px solid var(--color-ted-red);
+    outline-offset: 0;
+    border-color: var(--color-ted-red) !important;
+  }
+  
+  /* Flat border design rule */
+  input, button, select, textarea {
+    border-radius: 2px;
+  }
+}

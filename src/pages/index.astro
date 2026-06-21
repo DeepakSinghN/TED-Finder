@@ -1,11 +1,1813 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+  title="TED Talk Finder — Find the Best TED Talks on Any Topic"
+  description="Discover the best TED talks on philosophy, life, communication, media, and more. AI-powered tool that verifies Simon Sinek, Amy Cuddy, Mel Robbins, Esther Perel, Bill Gates & Elon Musk TED talks directly from the official YouTube channel."
+  canonicalUrl="https://tedtalksfinder.com/"
+>
+  <!-- Header -->
+  <Header activePage="search" />
+
+  <main class="flex-grow">
+    <!-- Hero / Search Section -->
+    <section
+      class="bg-black text-white py-10 px-4 sm:py-16 sm:px-6 md:pt-24 md:pb-16 md:px-12 border-b border-gray-900"
+    >
+      <div class="max-w-4xl mx-auto text-center space-y-5 sm:space-y-8">
+        <div class="space-y-3 sm:space-y-4">
+          <p
+            class="text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest text-[#EB0028]"
+          >
+            Verified from Official TED YouTube Channel
+          </p>
+          <h1
+            class="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-normal uppercase leading-[1.05] flex flex-col items-center gap-3 sm:gap-4"
+          >
+            <span>Find the Best</span>
+            <span class="flex items-center justify-center gap-3 sm:gap-5">
+              <!-- Microphone icon — TED talk stage vibe -->
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="text-[#EB0028] w-8 h-8 sm:w-14 sm:h-14 md:w-20 md:h-20 shrink-0 drop-shadow-[0_0_12px_rgba(235,0,40,0.5)]"
+                aria-hidden="true"
+              >
+                <path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4z"
+                ></path>
+                <path
+                  d="M19 11a1 1 0 1 0-2 0 5 5 0 0 1-10 0 1 1 0 1 0-2 0 7 7 0 0 0 6 6.92V21H9a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-2v-3.08A7 7 0 0 0 19 11z"
+                ></path>
+              </svg>
+              <span><span class="text-[#EB0028]">TED</span> Talks</span>
+            </span>
+          </h1>
+        </div>
+        <p
+          class="text-gray-400 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-normal leading-relaxed"
+        >
+          Search any topic — philosophy, communication, media, leadership and
+          instantly get real, AI-curated TED talk videos verified directly from
+          the official TED YouTube channel.
+        </p>
+
+        <!-- Search Form -->
+        <form
+          id="search-form"
+          aria-label="Search for TED talks by topic"
+          class="max-w-2xl mx-auto mt-5 sm:mt-8 flex flex-col gap-0 border border-gray-800 focus-within:border-[#EB0028] transition-colors duration-200"
+        >
+          <div class="relative flex-grow">
+            <label for="search-input" class="sr-only"
+              >Search TED talks by topic</label
+            >
+            <input
+              type="text"
+              id="search-input"
+              name="q"
+              placeholder="e.g. philosophy, communication, media..."
+              autocomplete="off"
+              class="w-full bg-[#1A1A1A] text-white px-4 py-3.5 sm:px-5 sm:py-4 border-0 focus:outline-none placeholder-gray-500 text-sm sm:text-base"
+            />
+          </div>
+          <button
+            type="submit"
+            id="search-btn"
+            aria-label="Find TED talks"
+            class="bg-[#EB0028] text-white font-bold uppercase tracking-wider text-sm px-8 py-3.5 sm:py-4 hover:bg-[#c40020] active:bg-[#a10019] transition-colors duration-150 flex items-center justify-center space-x-2 w-full cursor-pointer"
+          >
+            <span>Find Talks</span>
+          </button>
+        </form>
+
+        <!-- Popular Topic Tags -->
+        <nav aria-label="Popular TED talk topics">
+          <div
+            class="flex flex-wrap justify-center gap-1.5 sm:gap-2 max-w-2xl mx-auto text-[11px] sm:text-xs text-gray-400"
+          >
+            <span class="self-center font-semibold">Popular:</span>
+            <button
+              type="button"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
+              aria-label="Search TED talks about philosophy and life"
+              >philosophy and life</button
+            >
+            <button
+              type="button"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
+              aria-label="Search TED talks about communication"
+              >communication</button
+            >
+            <button
+              type="button"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
+              aria-label="Search TED talks about media">media</button
+            >
+            <button
+              type="button"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
+              aria-label="Search TED talks about leadership">leadership</button
+            >
+            <button
+              type="button"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
+              aria-label="Search TED talks about procrastination"
+              >procrastination</button
+            >
+            <button
+              type="button"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
+              aria-label="Search TED talks about mental health"
+              >mental health</button
+            >
+            <button
+              type="button"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
+              aria-label="Search TED talks about AI ethics">AI ethics</button
+            >
+          </div>
+        </nav>
+
+        <!-- Hero Page Links -->
+        <div
+          class="flex flex-wrap justify-center items-center gap-x-3 sm:gap-x-4 gap-y-1.5 max-w-2xl mx-auto text-[10px] sm:text-[11px] uppercase tracking-widest text-gray-500 font-semibold pt-1"
+        >
+          <a
+            href="/about"
+            class="hover:text-white transition-colors duration-150">About Us</a
+          >
+          <span class="text-gray-800 select-none">•</span>
+          <a
+            href="/privacy-policy"
+            class="hover:text-white transition-colors duration-150"
+            >Privacy Policy</a
+          >
+          <span class="text-gray-800 select-none">•</span>
+          <a
+            href="/terms-and-conditions"
+            class="hover:text-white transition-colors duration-150"
+            >Terms & Conditions</a
+          >
+          <span class="text-gray-800 select-none">•</span>
+          <a
+            href="/contact"
+            class="hover:text-white transition-colors duration-150"
+            >Contact Us</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section
+      id="results-section"
+      class="py-10 px-4 sm:py-16 sm:px-6 md:py-20 md:px-12 bg-[#F4F4F4] min-h-[400px] flex items-center justify-center"
+    >
+      <div class="max-w-7xl mx-auto w-full">
+        <!-- Initial Blank State -->
+        <div
+          id="initial-state"
+          class="text-center py-8 sm:py-12 max-w-md mx-auto space-y-3 sm:space-y-4"
+        >
+          <div class="text-gray-400 text-5xl sm:text-6xl font-light">💡</div>
+          <h2 class="text-xl sm:text-2xl font-bold uppercase tracking-wide">
+            Enter a topic
+          </h2>
+          <p class="text-sm sm:text-base text-gray-500 px-2">
+            Discover top-rated TED talks on procrastination, space, psychology,
+            design, or any subject you want to dive into.
+          </p>
+        </div>
+
+        <!-- Homepage Recent Uploads Feed Section -->
+        <div
+          id="homepage-recent"
+          class="mt-8 sm:mt-12 pt-8 sm:pt-12 border-t border-gray-300 space-y-6 sm:space-y-8 w-full"
+        >
+          <div
+            class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-300 pb-3 sm:pb-4 gap-1.5 sm:gap-2"
+          >
+            <h2
+              class="text-xl sm:text-2xl font-extrabold uppercase tracking-tight text-black"
+            >
+              Featured Recent Talks
+            </h2>
+            <span
+              class="text-[10px] sm:text-xs uppercase tracking-wider font-semibold text-gray-500 bg-gray-200 px-2.5 py-1 rounded"
+              >LATEST ON TED</span
+            >
+          </div>
+          <div
+            id="homepage-recent-grid"
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8"
+          >
+            <div
+              class="text-center py-10 text-gray-400 col-span-full animate-pulse text-sm"
+            >
+              Loading featured recent talks...
+            </div>
+          </div>
+        </div>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="hidden w-full">
+          <!-- Hero -->
+          <div
+            class="relative py-16 sm:py-24 flex flex-col items-center text-center gap-8 overflow-hidden"
+          >
+            <!-- Mic with ripples -->
+            <div class="relative flex items-center justify-center">
+              <span class="ted-ring"></span>
+              <span
+                class="ted-ring"
+                style="animation-delay: 0.8s; border-color: rgba(235,0,40,0.25);"
+              ></span>
+              <span
+                class="ted-ring"
+                style="animation-delay: 1.6s; border-color: rgba(235,0,40,0.12);"
+              ></span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="relative z-10 w-12 h-12 sm:w-14 sm:h-14 text-[#EB0028] ted-mic"
+                aria-hidden="true"
+              >
+                <path d="M12 1a4 4 0 0 1 4 4v6a4 4 0 0 1-8 0V5a4 4 0 0 1 4-4z"
+                ></path>
+                <path
+                  d="M19 11a1 1 0 1 0-2 0 5 5 0 0 1-10 0 1 1 0 1 0-2 0 7 7 0 0 0 6 6.92V21H9a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-2v-3.08A7 7 0 0 0 19 11z"
+                ></path>
+              </svg>
+            </div>
+
+            <!-- Single line of text -->
+            <p
+              class="text-base sm:text-lg font-semibold text-gray-500 tracking-wide"
+            >
+              Searching for the best talks on
+              <span class="text-[#EB0028] font-extrabold"
+                >&ldquo;<span id="loading-keyword">&hellip;</span>&rdquo;</span
+              >
+            </p>
+          </div>
+
+          <!-- Skeleton cards -->
+          <div
+            class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8"
+          >
+            {
+              [1, 2, 3].map(() => (
+                <div class="bg-white border border-gray-200 flex flex-col h-full animate-pulse">
+                  <div class="aspect-video bg-gray-200 w-full" />
+                  <div class="p-6 flex flex-col flex-grow space-y-4">
+                    <div class="h-3 bg-gray-200 w-1/3 rounded" />
+                    <div class="h-5 bg-gray-200 w-5/6 rounded" />
+                    <div class="h-3 bg-gray-200 w-full rounded" />
+                    <div class="h-3 bg-gray-200 w-2/3 rounded" />
+                    <div class="mt-auto pt-4 h-9 bg-gray-100 w-full" />
+                  </div>
+                </div>
+              ))
+            }
+          </div>
+        </div>
+
+        <style>
+          .ted-ring {
+            position: absolute;
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(235, 0, 40, 0.45);
+            animation: tedRipple 2.4s ease-out infinite;
+          }
+          @keyframes tedRipple {
+            0% {
+              transform: scale(0.9);
+              opacity: 1;
+            }
+            100% {
+              transform: scale(2.8);
+              opacity: 0;
+            }
+          }
+          .ted-mic {
+            animation: tedMic 1.8s ease-in-out infinite;
+          }
+          @keyframes tedMic {
+            0%,
+            100% {
+              filter: drop-shadow(0 0 6px rgba(235, 0, 40, 0.5));
+            }
+            50% {
+              filter: drop-shadow(0 0 20px rgba(235, 0, 40, 0.9));
+              transform: scale(1.06);
+            }
+          }
+        </style>
+
+        <!-- Error State -->
+        <div
+          id="error-state"
+          class="hidden text-center py-12 max-w-md mx-auto space-y-4"
+        >
+          <div class="text-[#EB0028] text-6xl">⚠️</div>
+          <h2 class="text-2xl font-bold uppercase tracking-wide">
+            Search Failed
+          </h2>
+          <p id="error-text" class="text-gray-600">
+            Couldn't find verified talks — try a different topic.
+          </p>
+          <button
+            id="retry-btn"
+            class="border border-black px-6 py-2 uppercase font-bold text-xs hover:bg-black hover:text-white transition-colors duration-150 cursor-pointer"
+            >Try Again</button
+          >
+        </div>
+
+        <!-- Success Results State -->
+        <div id="success-state" class="hidden space-y-10 sm:space-y-16 w-full">
+          <!-- Curated Talks Section -->
+          <div class="space-y-5 sm:space-y-8">
+            <div
+              class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-300 pb-3 sm:pb-4 gap-1.5 sm:gap-2"
+            >
+              <h2
+                id="results-title"
+                class="text-xl sm:text-2xl font-extrabold uppercase tracking-tight"
+              >
+              </h2>
+              <span
+                class="text-[10px] sm:text-xs uppercase tracking-wider font-semibold text-[#EB0028] bg-red-50 border border-red-100 px-2.5 py-1 rounded"
+                >CURATED OFFICIAL TALKS</span
+              >
+            </div>
+
+            <div
+              id="results-grid"
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8"
+            >
+              <!-- Dynamically populated curated cards go here -->
+            </div>
+
+            <!-- Show More Pagination Button -->
+            <div class="flex justify-center pt-2 sm:pt-4">
+              <button
+                id="show-more-btn"
+                class="hidden border-2 border-black text-black px-8 sm:px-10 py-3 sm:py-4 uppercase tracking-wider font-bold text-xs hover:bg-black hover:text-white transition-colors duration-150 cursor-pointer w-full sm:w-auto"
+              >
+                Show More Talks
+              </button>
+            </div>
+          </div>
+
+          <!-- Recent Talks Section (Within 1 Year) -->
+          <div id="recent-section" class="space-y-5 sm:space-y-8 hidden">
+            <div
+              class="flex flex-col sm:flex-row justify-between items-start sm:items-center border-b border-gray-300 pb-3 sm:pb-4 gap-1.5 sm:gap-2"
+            >
+              <h2
+                class="text-xl sm:text-2xl font-extrabold uppercase tracking-tight"
+              >
+                Latest Uploads <span class="text-[#EB0028]"
+                  >(Within 1 Year)</span
+                >
+              </h2>
+              <span
+                class="text-[10px] sm:text-xs uppercase tracking-wider font-semibold text-gray-500 bg-gray-200 px-2.5 py-1 rounded"
+                >RECENT UPLOADS</span
+              >
+            </div>
+
+            <div
+              id="recent-grid"
+              class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8"
+            >
+              <!-- Dynamically populated recent cards go here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SEO Content Article Section -->
+  <section
+    aria-label="About TED Talk Finder"
+    class="bg-white border-t border-gray-200 py-12 px-4 sm:py-16 sm:px-6 md:py-20 md:px-12"
+  >
+    <div class="max-w-4xl mx-auto">
+      <!-- Section Header -->
+      <div class="mb-8 sm:mb-12 border-b border-gray-200 pb-6 sm:pb-8">
+        <p
+          class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#EB0028] mb-2 sm:mb-3"
+        >
+          About This Tool
+        </p>
+        <h2
+          class="text-2xl sm:text-3xl md:text-4xl font-extrabold uppercase tracking-tight text-black leading-tight"
+        >
+          What Is TED Talk Finder & How Does It Work?
+        </h2>
+      </div>
+
+      <!-- Main Article Content -->
+      <article
+        class="prose-content space-y-4 sm:space-y-6 text-gray-700 text-sm sm:text-base leading-relaxed"
+      >
+        <p>
+          <strong>TED Talk Finder</strong> is a free, AI-powered search tool that
+          helps you discover the <strong>best TED talks</strong> on virtually any
+          subject — from philosophy and life to communication, media, leadership,
+          science, technology, and beyond. Whether you're a student, professional,
+          researcher, or lifelong learner, this tool makes it effortless to explore
+          the vast library of <strong>TED talk videos</strong> available on YouTube.
+        </p>
+
+        <h3
+          class="text-lg sm:text-xl font-extrabold uppercase tracking-tight text-black mt-8 sm:mt-10 mb-2 sm:mb-3"
+        >
+          What Is a TED Talk?
+        </h3>
+        <p>
+          The <strong>TED talk meaning</strong> traces back to 1984, when TED — short
+          for <em>Technology, Entertainment, and Design</em> — held its first conference.
+          Today, TED is a global non-profit dedicated to spreading ideas through short,
+          powerful talks. A <strong>TED talk</strong> is typically an 18-minute (or
+          shorter) presentation delivered by world-leading thinkers, innovators, and
+          researchers. Available free at <strong>TED talk YouTube</strong> and on
+          ted.com, these talks have collectively been viewed billions of times across
+          the globe.
+        </p>
+
+        <h3
+          class="text-lg sm:text-xl font-extrabold uppercase tracking-tight text-black mt-8 sm:mt-10 mb-2 sm:mb-3"
+        >
+          Best TED Talks on Philosophy &amp; Life
+        </h3>
+        <p>
+          If you're searching for the <strong
+            >best TED talks about philosophy and life</strong
+          >, this tool delivers verified results in seconds. Talks in this
+          category explore happiness, meaning, identity, resilience, and the
+          human condition. Legendary TED speakers like Brené Brown on
+          vulnerability, Dan Gilbert on happiness, and Viktor Frankl-inspired
+          talks on finding meaning make this one of the richest topic categories
+          available. TED Talk Finder uses AI to surface the most relevant and
+          highest-impact talks so you never have to wade through irrelevant
+          results.
+        </p>
+
+        <h3
+          class="text-lg sm:text-xl font-extrabold uppercase tracking-tight text-black mt-8 sm:mt-10 mb-2 sm:mb-3"
+        >
+          Best TED Talks About Communication
+        </h3>
+        <p>
+          The <strong>best TED talks about communication</strong> cover everything
+          from public speaking confidence to active listening, storytelling, and persuasion.
+          Notable talks include Julian Treasure's "How to speak so that people want
+          to listen" and Celeste Headlee's "10 ways to have a better conversation."
+          TED Talk Finder lets you search for these directly and also surfaces recent
+          uploads from the official TED channel, so you always have access to fresh
+          content.
+        </p>
+
+        <h3
+          class="text-lg sm:text-xl font-extrabold uppercase tracking-tight text-black mt-8 sm:mt-10 mb-2 sm:mb-3"
+        >
+          TED Talks on Media — Understanding the Information Age
+        </h3>
+        <p>
+          Looking for a <strong>TED talk on media</strong> or a <strong
+            >media TED talk</strong
+          >? TED has produced dozens of powerful talks exploring journalism,
+          social media, fake news, digital culture, and the future of
+          storytelling. Whether you want to understand the <strong
+            >TED talk about media</strong
+          >'s role in shaping public opinion or explore how algorithms influence
+          what we read and watch, TED Talk Finder surfaces verified talks from
+          credible voices at the intersection of technology and media.
+        </p>
+
+        <h3
+          class="text-lg sm:text-xl font-extrabold uppercase tracking-tight text-black mt-8 sm:mt-10 mb-2 sm:mb-3"
+        >
+          Famous TED Talks You Should Watch
+        </h3>
+        <p>
+          Some of the most widely shared <strong>TED talk topics</strong> include:
+        </p>
+        <ul class="list-none space-y-2 pl-0">
+          <li class="flex items-start gap-3">
+            <span class="text-[#EB0028] font-bold mt-0.5">→</span><span
+              ><strong>Simon Sinek TED talk</strong> — "How Great Leaders Inspire
+              Action" is one of the most-watched TED talks in history, introducing
+              the "Golden Circle" framework for purpose-driven leadership.</span
+            >
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[#EB0028] font-bold mt-0.5">→</span><span
+              ><strong>Amy Cuddy TED talk</strong> — "Your Body Language May Shape
+              Who You Are" explores how power poses influence confidence and hormonal
+              responses, with practical implications for job interviews and public
+              speaking.</span
+            >
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[#EB0028] font-bold mt-0.5">→</span><span
+              ><strong>Mel Robbins TED talk</strong> — "How to Stop Screwing Yourself
+              Over" delivers a punchy, no-nonsense breakdown of self-motivation and
+              the 5-second rule for beating hesitation.</span
+            >
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[#EB0028] font-bold mt-0.5">→</span><span
+              ><strong>Esther Perel TED talk</strong> — Known for talks on desire,
+              love, and infidelity, Esther Perel's TED presentations are among the
+              most honest and nuanced explorations of modern relationships.</span
+            >
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[#EB0028] font-bold mt-0.5">→</span><span
+              ><strong>Bill Gates TED talks</strong> — Bill Gates has delivered multiple
+              TED talks covering global health, climate change, pandemic preparedness,
+              and education reform.</span
+            >
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[#EB0028] font-bold mt-0.5">→</span><span
+              ><strong>Elon Musk TED talks</strong> — Elon Musk's TED appearances
+              dive deep into SpaceX, Tesla, the future of transportation, and the
+              existential importance of becoming a multi-planetary species.</span
+            >
+          </li>
+        </ul>
+
+        <h3
+          class="text-lg sm:text-xl font-extrabold uppercase tracking-tight text-black mt-8 sm:mt-10 mb-2 sm:mb-3"
+        >
+          How AI Powers TED Talk Finder
+        </h3>
+        <p>
+          At its core, TED Talk Finder uses a <strong
+            >large language model (LLM)</strong
+          > — Google Gemini or Grok — to generate a curated list of relevant TED talk
+          titles and speakers for your search query. Each suggestion is then verified
+          in real-time against the <strong>official TED YouTube channel</strong
+          >, ensuring you only see talks that truly exist and are publicly
+          available. Duration filtering ensures no YouTube Shorts or promo clips
+          appear — only full, long-form TED talk presentations. Results are
+          cached intelligently, so repeat searches are instant.
+        </p>
+
+        <h3
+          class="text-lg sm:text-xl font-extrabold uppercase tracking-tight text-black mt-8 sm:mt-10 mb-2 sm:mb-3"
+        >
+          Exploring TED Talk Topics
+        </h3>
+        <p>
+          Beyond the famous speakers, TED Talk Finder excels at surfacing talks
+          on niche <strong>TED talk topics</strong> you might not find easily by browsing
+          YouTube. Search for "creativity," "climate change," "neuroscience," "sleep,"
+          "mindfulness," or "artificial intelligence" — and the tool will return a
+          carefully curated, verified shortlist of the most relevant TED talks available.
+          A dedicated "Recent Uploads" section also surfaces TED talks published within
+          the last year, keeping you informed with the freshest ideas worth spreading.
+        </p>
+
+        <p class="text-sm text-gray-500 border-t border-gray-200 pt-6 mt-8">
+          <em
+            >TED Talk Finder is an independent fan-built tool and is not
+            affiliated with or endorsed by TED Conferences LLC. All TED talk
+            videos are sourced from the official TED YouTube channel and remain
+            the intellectual property of their respective speakers and TED.</em
+          >
+        </p>
+      </article>
+
+      <!-- FAQ Section -->
+      <div class="mt-10 sm:mt-16">
+        <div class="mb-6 sm:mb-8 border-b border-gray-200 pb-4 sm:pb-6">
+          <p
+            class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#EB0028] mb-2 sm:mb-3"
+          >
+            Common Questions
+          </p>
+          <h2
+            class="text-xl sm:text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-black"
+          >
+            Frequently Asked Questions
+          </h2>
+        </div>
+
+        <div
+          class="space-y-0 divide-y divide-gray-200"
+          itemscope
+          itemtype="https://schema.org/FAQPage"
+        >
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                What is a TED talk?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                A TED talk is a short, influential presentation given at a TED
+                (Technology, Entertainment, Design) conference or partner event
+                (like TEDx). Typically lasting 18 minutes or less, TED talks
+                cover diverse subjects including science, technology, business,
+                culture, design, and personal growth. They are recorded and
+                distributed free of charge online to spread "ideas worth
+                spreading."
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                What does TED talk stand for?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                TED stands for Technology, Entertainment, and Design. These
+                three broad subject areas originally shaped the first TED
+                conference in 1984. Today, TED talks have expanded far beyond
+                these topics to include sciences, humanities, business, design,
+                global issues, and personal growth.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                What are the top 10 TED Talks of all time?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                The top 10 most-viewed and popular TED talks of all time
+                include: 1. "Do schools kill creativity?" by Sir Ken Robinson,
+                2. "Your body language may shape who you are" by Amy Cuddy, 3.
+                "How great leaders inspire action" by Simon Sinek, 4. "The power
+                of vulnerability" by Brené Brown, 5. "Inside the mind of a
+                master procrastinator" by Tim Urban, 6. "10 ways to have a
+                better conversation" by Celeste Headlee, 7. "The next outbreak?
+                We're not ready" by Bill Gates, 8. "My stroke of insight" by
+                Jill Bolte Taylor, 9. "What makes a good life? Lessons from the
+                longest study on happiness" by Robert Waldinger, and 10. "The
+                puzzle of motivation" by Dan Pink.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                Why is TED Talk so famous?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                TED talks are famous because they synthesize complex ideas into
+                short, engaging, and highly visual presentations that are easily
+                digestible. The format's strict 18-minute limit forces speakers
+                to be concise and impactful. Combined with free online
+                distribution, high production quality, and speakers who are
+                world-class experts or have unique stories, TED talks quickly
+                spread across social media.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                What is the most successful Ted talk in history?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                Sir Ken Robinson's 2006 presentation, "Do schools kill
+                creativity?", is widely considered the most successful and
+                popular TED talk in history. It has garnered over 75 million
+                views on the official TED website and YouTube channel, sparking
+                a global conversation about educational systems and creativity.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                Who is the youngest TED talk speaker in India?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                Various young prodigies have spoken at TEDx events in India.
+                Notable among them is Advait Thakur, an Indian computer
+                programmer and entrepreneur who gave a TEDx talk at the age of
+                9. Other young speakers include child prodigies like Kautilya
+                Pandit and Tilak Mehta, who presented their ideas at local TEDx
+                conferences.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                What is the most watched Ted Talk?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                The most watched TED talk is "Do schools kill creativity?" by
+                education expert Sir Ken Robinson. First delivered at the
+                TED2006 conference, this talk has accumulated more than 75
+                million combined views across official platforms, remaining the
+                ultimate fan-favorite.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                Do TED talkers get paid?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                No, speakers at official TED conferences do not get paid a
+                speaker fee. However, TED covers their travel costs,
+                accommodation, and provides tickets to the multi-day conference.
+                Speakers benefit from massive global exposure, professional
+                speaker coaching, and the prestige associated with giving a TED
+                talk. Most TEDx events operate similarly and do not pay
+                speakers.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                What is the most inspiring Ted talk?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                While inspiration is subjective, Brené Brown's "The power of
+                vulnerability" is widely cited as the most inspiring TED talk,
+                helping millions embrace vulnerability and build stronger
+                connections. Other highly inspiring talks include Mel Robbins'
+                "How to stop screwing yourself over" and Robert Waldinger's
+                study on what makes a good life.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                Are TED Talks scripted or unscripted?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                TED talks are highly scripted, structured, and rigorously
+                prepared. Speakers work closely with TED's editorial team and
+                speech coaches for months before the event to refine their
+                message. While talks are designed to feel natural and
+                conversational, every word, slide, and movement is usually
+                planned, memorized, and rehearsed.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                What is the longest Ted talk ever?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                Official main-stage TED talks are strictly limited to 18
+                minutes, though some older talks (like E.O. Wilson's in 2007)
+                ran slightly longer at 22-23 minutes. In contrast, local,
+                independently organized TEDx events can sometimes feature longer
+                talks or panel discussions, but the 18-minute rule remains the
+                golden standard for TED.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                Who is the youngest person to give a TED talk?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                Ishita Katyal is one of the youngest people to give a talk at
+                the official TED Youth conference, speaking at age 10 in 2015.
+                On the independent TEDx level, even younger children, such as
+                7-year-old Molly Wright, have delivered talks (like her 2021
+                TEDx talk on early childhood development).
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                Who gets chosen for TED Talks?
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                TED speakers are chosen through nominations, open applications,
+                and direct invitations from the TED curation team. They look for
+                scientists, researchers, artists, activists, and builders who
+                have a unique "idea worth spreading," backed by evidence or
+                personal experience, and who can present it clearly and
+                engagingly.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                what does ted stand for in ted talks
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                In TED talks, TED stands for Technology, Entertainment, and
+                Design. The organization started in 1984 as a conference where
+                these three fields converged. Since then, the topics have
+                broadened to include almost every discipline imaginable.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                how to do a ted talk
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                To give a TED talk, you should: 1. Define your core "idea worth
+                spreading" clearly, 2. Apply or get nominated to speak at a main
+                TED event or apply directly to a local, independent TEDx event,
+                3. Outline your talk focusing on a narrative structure, 4. Keep
+                it under 18 minutes, and 5. Rehearse extensively to deliver a
+                memorable, conversational presentation without notes.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                best ted talks about philosophy and life
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                The best TED talks about philosophy and life include Brené
+                Brown's "The power of vulnerability" (on living authentically),
+                Dan Gilbert's "The surprising science of happiness" (on mental
+                resilience), Robert Waldinger's "What makes a good life?" (on
+                relationships), and Tim Urban's "Inside the mind of a master
+                procrastinator."
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                best ted talks about communication
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                The best TED talks about communication include Julian Treasure's
+                "How to speak so that people want to listen," Celeste Headlee's
+                "10 ways to have a better conversation," Simon Sinek's "How
+                great leaders inspire action," and Amy Cuddy's "Your body
+                language may shape who you are."
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                ted talks meaning
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                A TED talk is a concise, highly focused presentation designed to
+                explain a single idea clearly and passionately. The goal of a
+                TED talk is to share knowledge, challenge assumptions, and
+                inspire the audience under the tagline "Ideas Worth Spreading."
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                best ted talks of all time
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                The best TED talks of all time include Sir Ken Robinson's "Do
+                schools kill creativity?", Amy Cuddy's "Your body language may
+                shape who you are", Simon Sinek's "How great leaders inspire
+                action", Brené Brown's "The power of vulnerability", and Tim
+                Urban's procrastinator talk. These have the highest view counts
+                and global impact.
+              </p>
+            </div>
+          </details>
+
+          <details
+            class="group py-6"
+            itemscope
+            itemprop="mainEntity"
+            itemtype="https://schema.org/Question"
+          >
+            <summary
+              class="flex justify-between items-center cursor-pointer list-none"
+            >
+              <h3
+                class="text-base font-bold uppercase tracking-wide text-black group-open:text-[#EB0028] transition-colors"
+                itemprop="name"
+              >
+                ted talks for kids
+              </h3>
+              <span
+                class="text-[#EB0028] text-xl font-light ml-4 group-open:rotate-45 transition-transform"
+                >+</span
+              >
+            </summary>
+            <div
+              class="mt-4 text-sm text-gray-600 leading-relaxed"
+              itemscope
+              itemprop="acceptedAnswer"
+              itemtype="https://schema.org/Answer"
+            >
+              <p itemprop="text">
+                The best TED talks for kids include Molly Wright's talk on child
+                development, Arthur Benjamin's "Mathemagic" speed math, and
+                various TED-Ed animated lessons. TED-Ed is TED's youth and
+                education initiative, offering short, visually engaging
+                educational videos specifically designed for kids and students.
+              </p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer
+    class="bg-black text-white py-10 px-4 sm:py-12 sm:px-6 md:px-12 border-t border-gray-900"
+  >
+    <div
+      class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8"
+    >
+      <div class="space-y-3 sm:space-y-4 col-span-2 md:col-span-1">
+        <div class="text-lg sm:text-xl font-extrabold tracking-tighter">
+          <span class="text-[#EB0028]">TED</span>
+          <span class="uppercase text-sm tracking-normal">Talk Finder</span>
+        </div>
+        <p class="text-xs text-gray-500 leading-relaxed">
+          An AI-powered curation utility. Suggests and verifies ideas worth
+          spreading. Powered by Google Gemini / Grok and the YouTube Data API.
+        </p>
+      </div>
+      <div>
+        <h4
+          class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4"
+        >
+          Explore
+        </h4>
+        <ul class="space-y-2 text-xs text-gray-500 font-semibold">
+          <li>
+            <a
+              href="https://www.ted.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-white transition-colors duration-150"
+              >TED Conferences</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.ted.com/about/programs-initiatives/tedx-program"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-white transition-colors duration-150"
+              >TEDx Events</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://blog.ted.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-white transition-colors duration-150"
+              >TED Blog</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.ted.com/podcasts"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="hover:text-white transition-colors duration-150"
+              >TED Podcasts</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div>
+        <h4
+          class="text-xs font-bold uppercase tracking-wider text-gray-400 mb-4"
+        >
+          API Caching
+        </h4>
+        <ul class="space-y-2 text-xs text-gray-500 font-semibold">
+          <li>
+            <a
+              href="/terms-and-conditions"
+              class="hover:text-white transition-colors duration-150"
+              >Terms of Use</a
+            >
+          </li>
+          <li>
+            <a
+              href="/privacy-policy"
+              class="hover:text-white transition-colors duration-150"
+              >Privacy Policy</a
+            >
+          </li>
+          <li>
+            <a
+              href="/about"
+              class="hover:text-white transition-colors duration-150"
+              >About Us</a
+            >
+          </li>
+          <li>
+            <a
+              href="/contact"
+              class="hover:text-white transition-colors duration-150"
+              >Contact Us</a
+            >
+          </li>
+        </ul>
+      </div>
+      <div class="space-y-4">
+        <h4 class="text-xs font-bold uppercase tracking-wider text-gray-400">
+          Newsletter
+        </h4>
+        <p class="text-xs text-gray-500">
+          Subscribe for a daily dose of verified high-impact ideas.
+        </p>
+        <div
+          class="flex border border-gray-800 focus-within:border-[#EB0028] transition-colors duration-150"
+        >
+          <input
+            type="email"
+            placeholder="Your email address"
+            class="bg-[#1A1A1A] text-white px-3 py-2 text-xs w-full focus:outline-none placeholder-gray-500"
+            disabled
+          />
+          <button
+            class="bg-[#EB0028] text-white font-bold uppercase text-[10px] tracking-wider px-4 py-2 hover:bg-[#c40020] opacity-80 cursor-not-allowed"
+            disabled
+          >
+            Subscribe
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      class="max-w-7xl mx-auto mt-8 sm:mt-12 pt-5 sm:pt-6 border-t border-gray-900 flex flex-col sm:flex-row justify-between items-center text-[10px] sm:text-xs text-gray-600 gap-3 sm:gap-4 text-center sm:text-left"
+    >
+      <div>
+        &copy; 2026 TED Talk Finder. Built with Astro &amp; Tailwind CSS v4.
+      </div>
+      <div class="flex space-x-3 sm:space-x-4">
+        <a
+          href="https://github.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-white transition-colors duration-150">GitHub</a
+        >
+        <a
+          href="https://developers.google.com/youtube/v3"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-white transition-colors duration-150">YouTube API</a
+        >
+        <a
+          href="https://docs.astro.build"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="hover:text-white transition-colors duration-150">Astro Docs</a
+        >
+      </div>
+    </div>
+  </footer>
 </Layout>
+
+<script>
+  // Backend URL configuration
+  const BACKEND_URL =
+    (import.meta as any).env.PUBLIC_BACKEND_URL || "http://localhost:3001";
+
+  // DOM Elements
+  const form = document.getElementById("search-form") as HTMLFormElement;
+  const input = document.getElementById("search-input") as HTMLInputElement;
+  const searchBtn = document.getElementById("search-btn") as HTMLButtonElement;
+
+  const initialState = document.getElementById(
+    "initial-state",
+  ) as HTMLDivElement;
+  const loadingState = document.getElementById(
+    "loading-state",
+  ) as HTMLDivElement;
+  const errorState = document.getElementById("error-state") as HTMLDivElement;
+  const errorText = document.getElementById(
+    "error-text",
+  ) as HTMLParagraphElement;
+  const successState = document.getElementById(
+    "success-state",
+  ) as HTMLDivElement;
+
+  const resultsTitle = document.getElementById(
+    "results-title",
+  ) as HTMLHeadingElement;
+  const resultsGrid = document.getElementById("results-grid") as HTMLDivElement;
+  const recentSection = document.getElementById(
+    "recent-section",
+  ) as HTMLDivElement;
+  const recentGrid = document.getElementById("recent-grid") as HTMLDivElement;
+  const homepageRecent = document.getElementById(
+    "homepage-recent",
+  ) as HTMLDivElement;
+  const homepageRecentGrid = document.getElementById(
+    "homepage-recent-grid",
+  ) as HTMLDivElement;
+  const retryBtn = document.getElementById("retry-btn") as HTMLButtonElement;
+  const showMoreBtn = document.getElementById(
+    "show-more-btn",
+  ) as HTMLButtonElement;
+  const tagButtons = document.querySelectorAll(".tag-btn");
+
+  // Pagination state
+  let allTalks: any[] = [];
+  let displayedCount = 0;
+  const TALKS_PER_PAGE = 6;
+
+  // Tag buttons only fill the input — user still has to click Find Talks
+  tagButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      input.value = (btn.textContent || "").trim();
+      input.focus();
+    });
+  });
+
+  retryBtn.addEventListener("click", () => {
+    if (input.value.trim()) {
+      performSearch(input.value);
+    }
+  });
+
+  // Trigger on button click OR Enter key
+  searchBtn.addEventListener("click", () => {
+    performSearch(input.value);
+  });
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    performSearch(input.value);
+  });
+
+  async function performSearch(topic: string) {
+    if (!topic || !topic.trim()) return;
+
+    // Scroll down to the results/loading section
+    document
+      .getElementById("results-section")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const loadingKeyword = document.getElementById("loading-keyword");
+    if (loadingKeyword) {
+      const t = topic.trim();
+      loadingKeyword.textContent = t.charAt(0).toUpperCase() + t.slice(1);
+    }
+
+    // Reset UI State to loading
+    showState("loading");
+    searchBtn.disabled = true;
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/find-talks`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ topic: topic.trim() }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || `Server error (${response.status})`);
+      }
+
+      renderResults(data);
+    } catch (err: any) {
+      console.error("Search failed:", err);
+      errorText.textContent =
+        err.message ||
+        "Couldn't connect to server or verify talks — try a different topic.";
+      showState("error");
+    } finally {
+      searchBtn.disabled = false;
+    }
+  }
+
+  function showState(state: "initial" | "loading" | "error" | "success") {
+    initialState.classList.add("hidden");
+    homepageRecent.classList.add("hidden");
+    loadingState.classList.add("hidden");
+    errorState.classList.add("hidden");
+    successState.classList.add("hidden");
+
+    if (state === "initial") {
+      initialState.classList.remove("hidden");
+      homepageRecent.classList.remove("hidden");
+    } else if (state === "loading") loadingState.classList.remove("hidden");
+    else if (state === "error") errorState.classList.remove("hidden");
+    else if (state === "success") successState.classList.remove("hidden");
+  }
+
+  // Trigger pagination load
+  showMoreBtn.addEventListener("click", () => {
+    renderNextPage();
+  });
+
+  function renderResults(data: {
+    topic: string;
+    results?: any[];
+    recentResults?: any[];
+  }) {
+    allTalks = data.results || [];
+    displayedCount = 0;
+    resultsGrid.innerHTML = "";
+    recentGrid.innerHTML = "";
+
+    // Set Header Title
+    resultsTitle.textContent = `Talks about "${data.topic}"`;
+
+    // Render first page of 6 curated talks
+    renderNextPage();
+
+    // Render recent uploads
+    const recentTalks = data.recentResults || [];
+    if (recentTalks.length > 0) {
+      recentSection.classList.remove("hidden");
+      recentTalks.forEach((talk: any) => {
+        const card = createCardElement(talk);
+        recentGrid.appendChild(card);
+      });
+    } else {
+      recentSection.classList.add("hidden");
+    }
+
+    showState("success");
+  }
+
+  function getRelativeTimeString(dateStr: string): string {
+    if (!dateStr) return "";
+    const date = new Date(dateStr);
+    if (isNaN(date.getTime())) return "";
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+
+    const diffSecs = Math.floor(diffMs / 1000);
+    const diffMins = Math.floor(diffSecs / 60);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+    const diffMonths = Math.floor(diffDays / 30.44);
+    const diffYears = Math.floor(diffDays / 365.25);
+
+    if (diffYears > 0) {
+      return diffYears === 1 ? "1 yr ago" : `${diffYears} yrs ago`;
+    }
+    if (diffMonths > 0) {
+      return diffMonths === 1 ? "1 mo ago" : `${diffMonths} mos ago`;
+    }
+    if (diffDays > 0) {
+      return diffDays === 1 ? "1 day ago" : `${diffDays} days ago`;
+    }
+    return "Recently";
+  }
+
+  // Decoder element to handle YouTube API HTML entities
+  const decoderEl = document.createElement("textarea");
+  function escapeHtml(str: string): string {
+    if (!str) return "";
+    decoderEl.innerHTML = str;
+    return decoderEl.value
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function createCardElement(talk: any): HTMLDivElement {
+    const card = document.createElement("div");
+
+    card.className =
+      "bg-white border border-gray-200 flex flex-col h-full hover:scale-[1.02] hover:border-gray-400 transition-all duration-200 ease-out group";
+    card.innerHTML = `
+      <div class="aspect-video w-full bg-black relative overflow-hidden">
+        <img 
+          src="${escapeHtml(talk.thumbnail)}" 
+          alt="${escapeHtml(talk.title)}"
+          class="w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-150"
+          loading="lazy"
+        />
+        <div class="absolute bottom-2 right-2 bg-black/80 px-1.5 py-0.5 text-[9px] sm:text-[10px] font-bold text-white uppercase tracking-wider">
+          ${escapeHtml(talk.duration)}
+        </div>
+        <!-- Hover Play Overlay -->
+        <div class="absolute inset-0 bg-[#EB0028]/25 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-150">
+          <div class="bg-[#EB0028] text-white p-2.5 sm:p-3 rounded-full shadow-lg">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 fill-current" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="p-4 sm:p-6 flex flex-col flex-grow">
+        <div class="flex justify-between items-center mb-1 sm:mb-1.5 gap-2">
+          <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-[#EB0028] truncate">${escapeHtml(talk.speaker)}</span>
+          ${talk.publishedAt ? `<span class="text-[9px] sm:text-[10px] text-gray-500 font-semibold uppercase tracking-wider shrink-0">${escapeHtml(getRelativeTimeString(talk.publishedAt))}</span>` : ""}
+        </div>
+        <h3 class="text-sm sm:text-base md:text-lg font-bold text-gray-900 leading-tight mb-2 sm:mb-3 line-clamp-2 uppercase">
+          ${escapeHtml(talk.title)}
+        </h3>
+        <p class="text-xs sm:text-sm text-gray-600 font-normal leading-relaxed mb-4 sm:mb-6 line-clamp-3">
+          ${escapeHtml(talk.reason)}
+        </p>
+        <a 
+          href="${escapeHtml(talk.youtubeLink)}" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          class="mt-auto w-full bg-black text-white text-center py-2.5 sm:py-3 text-[11px] sm:text-xs font-bold uppercase tracking-wider hover:bg-[#EB0028] transition-colors duration-150"
+        >
+          Watch on YouTube
+        </a>
+      </div>
+    `;
+    return card;
+  }
+
+  function renderNextPage() {
+    const nextBatch = allTalks.slice(
+      displayedCount,
+      displayedCount + TALKS_PER_PAGE,
+    );
+
+    nextBatch.forEach((talk: any) => {
+      const card = createCardElement(talk);
+      resultsGrid.appendChild(card);
+    });
+
+    displayedCount += nextBatch.length;
+
+    // Show/Hide Show More button
+    if (displayedCount >= allTalks.length) {
+      showMoreBtn.classList.add("hidden");
+    } else {
+      showMoreBtn.classList.remove("hidden");
+    }
+  }
+
+  // Fetch featured recent uploads on page load
+  async function loadFeaturedTalks() {
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/recent-uploads`);
+      if (!response.ok) throw new Error("Failed to load");
+      const data = await response.json();
+      const results = data.results || [];
+
+      homepageRecentGrid.innerHTML = "";
+
+      if (results.length === 0) {
+        homepageRecentGrid.innerHTML = `<div class="text-center py-12 text-gray-400 col-span-full">No recent talks available.</div>`;
+        return;
+      }
+
+      results.forEach((talk: any) => {
+        const card = createCardElement(talk);
+        homepageRecentGrid.appendChild(card);
+      });
+    } catch (err) {
+      console.error("Failed to load featured talks:", err);
+      homepageRecentGrid.innerHTML = `<div class="text-center py-12 text-gray-400 col-span-full">Unable to load featured recent talks.</div>`;
+    }
+  }
+
+  // Call on load
+  loadFeaturedTalks();
+</script>

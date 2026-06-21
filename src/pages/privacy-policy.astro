@@ -1,0 +1,211 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+---
+
+<Layout
+  title="Privacy Policy — TED Talk Finder | AI-Powered TED Talk Discovery"
+  description="Read our Privacy Policy to understand how TED Talk Finder handles data, including details on our integration with YouTube API Services and AI curation engines."
+  canonicalUrl="https://tedtalksfinder.com/privacy-policy"
+>
+  <!-- Nav -->
+  <Header />
+
+  <!-- Hero -->
+  <section class="bg-black text-white py-16 sm:py-24 px-4 sm:px-6 md:px-12">
+    <div class="max-w-4xl mx-auto">
+      <p
+        class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#EB0028] mb-4"
+      >
+        Legal Information
+      </p>
+      <h1
+        class="text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-none mb-6"
+      >
+        Privacy<br /><span class="text-[#EB0028]">Policy</span>
+      </h1>
+      <p class="text-sm sm:text-base text-gray-400 leading-relaxed max-w-2xl">
+        Your privacy is important to us. This policy outlines how TED Talk
+        Finder operates, what data we process, and how we work with third-party
+        service providers.
+      </p>
+    </div>
+  </section>
+
+  <!-- Main Content -->
+  <main class="bg-white py-12 sm:py-20 px-4 sm:px-6 md:px-12">
+    <div class="max-w-4xl mx-auto space-y-12">
+      <section
+        class="prose max-w-none text-sm sm:text-base text-gray-700 leading-relaxed space-y-6"
+      >
+        <div>
+          <h2
+            class="text-xl sm:text-2xl font-extrabold uppercase tracking-tight text-black mb-3 border-b border-gray-200 pb-2"
+          >
+            1. Overview
+          </h2>
+          <p>
+            TED Talk Finder is a free, web-based search and curation utility
+            designed to help users discover TED talks on various topics. We do
+            not require user registration, accounts, or personal log-in
+            information. You are free to use our utility anonymously.
+          </p>
+        </div>
+
+        <div>
+          <h2
+            class="text-xl sm:text-2xl font-extrabold uppercase tracking-tight text-black mb-3 border-b border-gray-200 pb-2"
+          >
+            2. Information We Collect
+          </h2>
+          <p>We do not collect or store any personal data. Specifically:</p>
+          <ul class="list-disc pl-5 mt-2 space-y-2">
+            <li>
+              <strong>No Accounts:</strong> You do not need to register, log in, or
+              provide an email address to use our search utility.
+            </li>
+            <li>
+              <strong>Search Queries:</strong> Queries submitted through the search
+              form are processed to generate AI recommendations and verify them. We
+              do not store queries alongside identifying information.
+            </li>
+            <li>
+              <strong>IP Addresses:</strong> We apply a daily rate-limiting policy
+              (maximum 20 searches per day per IP address) to prevent API abuse. This
+              limit is processed in-memory and is not linked to any personal profiles.
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2
+            class="text-xl sm:text-2xl font-extrabold uppercase tracking-tight text-black mb-3 border-b border-gray-200 pb-2"
+          >
+            3. Third-Party Service Providers
+          </h2>
+          <p>
+            To deliver AI recommendations and search results, our utility
+            integrates with several third-party service providers:
+          </p>
+          <ul class="list-disc pl-5 mt-2 space-y-3">
+            <li>
+              <strong>Google Gemini API &amp; xAI Grok API:</strong> We utilize artificial
+              intelligence models provided by Google and xAI to suggest relevant TED
+              talks. No personal data is sent to these models; only the user-submitted
+              search term is provided.
+            </li>
+            <li>
+              <strong>YouTube API Services:</strong> We use YouTube API Services to
+              verify the existence, titles, durations, publication dates, and thumbnails
+              of suggested talks. By using this application, you agree to be bound
+              by the YouTube Terms of Service (<a
+                href="https://www.youtube.com/t/terms"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[#EB0028] hover:underline"
+                >https://www.youtube.com/t/terms</a
+              >) and Google Privacy Policy (<a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-[#EB0028] hover:underline"
+                >https://policies.google.com/privacy</a
+              >).
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h2
+            class="text-xl sm:text-2xl font-extrabold uppercase tracking-tight text-black mb-3 border-b border-gray-200 pb-2"
+          >
+            4. Cookies and Local Caching
+          </h2>
+          <p>
+            We do not use tracking cookies or persistent advertising
+            identifiers. We may use local browser storage (such as
+            SessionStorage) or server in-memory caching to save popular search
+            results to minimize external API usage and improve performance.
+          </p>
+        </div>
+
+        <div>
+          <h2
+            class="text-xl sm:text-2xl font-extrabold uppercase tracking-tight text-black mb-3 border-b border-gray-200 pb-2"
+          >
+            5. Updates to This Policy
+          </h2>
+          <p>
+            We may update our Privacy Policy from time to time. We encourage
+            visitors to frequently check this page for any changes. Your
+            continued use of this site after any change in this Privacy Policy
+            will constitute your acceptance of such change.
+          </p>
+        </div>
+
+        <div>
+          <h2
+            class="text-xl sm:text-2xl font-extrabold uppercase tracking-tight text-black mb-3 border-b border-gray-200 pb-2"
+          >
+            6. Contact Us
+          </h2>
+          <p>
+            If you have any questions or feedback regarding this Privacy Policy,
+            please contact us by visiting our <a
+              href="/contact"
+              class="text-[#EB0028] hover:underline">Contact Page</a
+            >.
+          </p>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="bg-black text-white p-8 sm:p-12 text-center mt-12">
+        <p
+          class="text-[10px] font-bold uppercase tracking-widest text-[#EB0028] mb-4"
+        >
+          Start Discovering
+        </p>
+        <h2
+          class="text-2xl sm:text-3xl font-extrabold uppercase tracking-tight mb-4"
+        >
+          Ready to Discover More?
+        </h2>
+        <a
+          href="/"
+          class="inline-block bg-[#EB0028] text-white font-extrabold uppercase tracking-widest text-xs sm:text-sm px-8 py-4 hover:bg-[#c40020] transition-colors duration-150"
+        >
+          Find Talks Now
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer
+    class="bg-black text-white py-10 px-4 sm:py-12 sm:px-6 md:px-12 border-t border-gray-900"
+  >
+    <div
+      class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center text-[10px] sm:text-xs text-gray-600 gap-4 text-center sm:text-left"
+    >
+      <div>
+        &copy; 2026 TED Talk Finder. Built with Astro &amp; Tailwind CSS v4.
+      </div>
+      <div class="flex flex-wrap justify-center gap-3 sm:gap-4">
+        <a href="/" class="hover:text-white transition-colors">Home</a>
+        <a href="/about" class="hover:text-white transition-colors">About</a>
+        <a
+          href="/privacy-policy"
+          class="hover:text-white transition-colors text-white"
+          >Privacy Policy</a
+        >
+        <a
+          href="/terms-and-conditions"
+          class="hover:text-white transition-colors">Terms</a
+        >
+        <a href="/contact" class="hover:text-white transition-colors">Contact</a
+        >
+      </div>
+    </div>
+  </footer>
+</Layout>

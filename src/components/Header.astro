@@ -1,0 +1,158 @@
+---
+interface Props {
+  activePage?: "search" | "watch" | "about" | "contact" | "none";
+}
+
+const { activePage = "none" } = Astro.props;
+---
+
+<header
+  class="sticky top-0 z-50 bg-black text-white border-b border-gray-900 py-3 px-4 sm:py-6 sm:px-6 md:px-12 flex justify-between items-center"
+>
+  <div class="flex items-center space-x-2">
+    <a
+      href="/"
+      class="text-xl sm:text-3xl font-extrabold tracking-tighter flex items-center hover:opacity-90 transition-opacity"
+    >
+      <span class="text-[#EB0028]">TED</span>
+      <span
+        class="text-white ml-2 uppercase text-base sm:text-xl tracking-normal font-semibold"
+        >Talk Finder</span
+      >
+    </a>
+  </div>
+  <div
+    class="hidden md:flex items-center space-x-6 text-xs font-bold uppercase tracking-wider text-gray-400"
+  >
+    <a
+      href="/"
+      class={activePage === "search"
+        ? "text-[#EB0028] border-b-2 border-[#EB0028] pb-1 font-bold"
+        : "hover:text-white transition-colors duration-150"}
+    >
+      Search
+    </a>
+    <a
+      href="/#homepage-recent"
+      class={activePage === "watch"
+        ? "text-[#EB0028] border-b-2 border-[#EB0028] pb-1 font-bold"
+        : "hover:text-white transition-colors duration-150"}
+    >
+      Watch
+    </a>
+    <a
+      href="/about"
+      class={activePage === "about"
+        ? "text-[#EB0028] border-b-2 border-[#EB0028] pb-1 font-bold"
+        : "hover:text-white transition-colors duration-150"}
+    >
+      About
+    </a>
+    <a
+      href="/contact"
+      class={activePage === "contact"
+        ? "text-[#EB0028] border-b-2 border-[#EB0028] pb-1 font-bold"
+        : "hover:text-white transition-colors duration-150"}
+    >
+      Contact
+    </a>
+    <div class="h-4 w-px bg-gray-800"></div>
+    <span class="text-white text-[10px] tracking-widest font-normal"
+      >IDEAS WORTH SPREADING</span
+    >
+  </div>
+  <!-- Mobile Menu Button (Hamburger) -->
+  <button
+    id="mobile-menu-btn"
+    class="md:hidden text-gray-400 hover:text-white focus:outline-none cursor-pointer p-1"
+    aria-label="Toggle Menu"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-6 w-6"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        id="menu-icon"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"></path>
+    </svg>
+  </button>
+
+  <!-- Mobile Drawer Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden absolute top-full left-0 w-full bg-black border-b border-gray-900 px-6 py-8 flex flex-col space-y-5 md:hidden z-40 transition-all duration-300 ease-in-out shadow-2xl"
+  >
+    <a
+      href="/"
+      class={`text-base font-bold uppercase tracking-wider ${activePage === "search" ? "text-[#EB0028]" : "text-gray-300 hover:text-white"}`}
+    >
+      Search
+    </a>
+    <a
+      href="/#homepage-recent"
+      class={`text-base font-bold uppercase tracking-wider ${activePage === "watch" ? "text-[#EB0028]" : "text-gray-300 hover:text-white"}`}
+    >
+      Watch
+    </a>
+    <a
+      href="/about"
+      class={`text-base font-bold uppercase tracking-wider ${activePage === "about" ? "text-[#EB0028]" : "text-gray-300 hover:text-white"}`}
+    >
+      About
+    </a>
+    <a
+      href="/contact"
+      class={`text-base font-bold uppercase tracking-wider ${activePage === "contact" ? "text-[#EB0028]" : "text-gray-300 hover:text-white"}`}
+    >
+      Contact
+    </a>
+
+    <!-- Tagline Section inside Mobile Menu -->
+    <div class="border-t border-gray-950 pt-5 mt-3 flex flex-col items-center">
+      <span
+        class="text-[#EB0028] text-[10px] font-extrabold tracking-[0.25em] uppercase text-center block mb-1"
+      >
+        Ideas Worth Spreading
+      </span>
+      <span
+        class="text-gray-600 text-[8px] uppercase tracking-widest text-center block"
+      >
+        AI-Powered Curation Utility
+      </span>
+    </div>
+  </div>
+</header>
+
+<script>
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const menuIcon = document.getElementById("menu-icon");
+
+  if (mobileMenuBtn && mobileMenu && menuIcon) {
+    mobileMenuBtn.addEventListener("click", () => {
+      const isHidden = mobileMenu.classList.contains("hidden");
+      if (isHidden) {
+        mobileMenu.classList.remove("hidden");
+        menuIcon.setAttribute("d", "M6 18L18 6M6 6l12 12");
+      } else {
+        mobileMenu.classList.add("hidden");
+        menuIcon.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+      }
+    });
+
+    // Close menu when clicking on a link
+    const links = mobileMenu.querySelectorAll("a");
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        menuIcon.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
+      });
+    });
+  }
+</script>

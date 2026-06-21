@@ -9,9 +9,22 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "start": "node server.js",
+    "server": "node --watch server.js",
+    "dev:all": "concurrently \"astro dev\" \"node --watch server.js\""
   },
   "dependencies": {
-    "astro": "^6.4.7"
+    "astro": "^6.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "express-rate-limit": "^8.5.2"
+  },
+  "devDependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.1",
+    "concurrently": "^10.0.3",
+    "tailwindcss": "^4.3.1"
   }
 }

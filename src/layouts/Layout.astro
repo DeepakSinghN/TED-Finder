@@ -1,23 +1,324 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title?: string;
+	description?: string;
+	canonicalUrl?: string;
+	ogImage?: string;
+	ogType?: string;
+}
+
+const {
+	title = "TED Talk Finder — Discover the Best TED Talks on Any Topic",
+	description = "Find the best TED Talks on philosophy, life, communication, media, and more. AI-powered search tool that verifies real TED talk videos on YouTube. Explore Simon Sinek, Amy Cuddy, Mel Robbins, Esther Perel, Bill Gates & Elon Musk TED talks.",
+	canonicalUrl = "https://tedtalksfinder.com/",
+	ogImage = "https://tedtalksfinder.com/og-image.jpg",
+	ogType = "website",
+} = Astro.props;
+
+const siteName = "TED Talk Finder";
+const twitterHandle = "@tedtalkfinder";
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-T9G04XY9HW" is:inline></script>
+		<script is:inline>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			gtag('config', 'G-T9G04XY9HW');
+		</script>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+		<!-- Favicons -->
+		<link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="shortcut icon" href="/favicon.ico" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<meta name="apple-mobile-web-app-title" content="Find Talks" />
+		<link rel="manifest" href="/site.webmanifest" />
+
+		<!-- Primary SEO Metadata -->
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="keywords" content="TED talks, best ted talks, ted talks topics, best ted talks about philosophy and life, best ted talks about communication, ted talk on media, media ted talk, ted talk meaning, what is a ted talk, ted talk about media, ted talk youtube, ted talk videos, ted talk topics, simon sinek ted talk, amy cuddy ted talk, mel robbins ted talk, esther perel ted talk, bill gates ted talks, elon musk ted talks, ted talks 2024, ted talks 2025, find ted talks" />
+		<meta name="author" content="TED Talk Finder" />
+		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+		<meta name="googlebot" content="index, follow" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+
+		<!-- Canonical URL -->
+		<link rel="canonical" href={canonicalUrl} />
+
+		<!-- Open Graph / Facebook -->
+		<meta property="og:site_name" content={siteName} />
+		<meta property="og:type" content={ogType} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:alt" content="TED Talk Finder — Discover the Best TED Talks on Any Topic" />
+		<meta property="og:locale" content="en_US" />
+
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:site" content={twitterHandle} />
+		<meta name="twitter:creator" content={twitterHandle} />
+		<meta name="twitter:url" content={canonicalUrl} />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage} />
+		<meta name="twitter:image:alt" content="TED Talk Finder — Discover the Best TED Talks on Any Topic" />
+
+		<!-- Additional SEO -->
+		<meta name="theme-color" content="#EB0028" />
+		<meta name="msapplication-TileColor" content="#EB0028" />
+
+		<!-- JSON-LD Structured Data: WebSite -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "WebSite",
+			"name": "TED Talk Finder",
+			"url": "https://tedtalksfinder.com/",
+			"description": "AI-powered tool to find the best TED talks on any topic. Discover TED talk videos on philosophy, life, communication, media, and more.",
+			"potentialAction": {
+				"@type": "SearchAction",
+				"target": {
+					"@type": "EntryPoint",
+					"urlTemplate": "https://tedtalksfinder.com/?q={search_term_string}"
+				},
+				"query-input": "required name=search_term_string"
+			},
+			"inLanguage": "en-US",
+			"publisher": {
+				"@type": "Organization",
+				"name": "TED Talk Finder",
+				"url": "https://tedtalksfinder.com/",
+				"logo": {
+					"@type": "ImageObject",
+					"url": "https://tedtalksfinder.com/favicon.svg"
+				}
+			}
+		}
+		</script>
+
+		<!-- JSON-LD Structured Data: SoftwareApplication -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "SoftwareApplication",
+			"name": "TED Talk Finder",
+			"applicationCategory": "EducationalApplication",
+			"operatingSystem": "Web",
+			"url": "https://tedtalksfinder.com/",
+			"description": "Find the best TED Talks on philosophy, life, communication, media, and more with AI-powered verification from the official TED YouTube channel.",
+			"offers": {
+				"@type": "Offer",
+				"price": "0",
+				"priceCurrency": "USD"
+			},
+			"aggregateRating": {
+				"@type": "AggregateRating",
+				"ratingValue": "4.9",
+				"ratingCount": "1250"
+			},
+			"featureList": [
+				"AI-powered TED talk discovery",
+				"Real-time YouTube verification",
+				"Philosophy and life talks",
+				"Communication talks",
+				"Media talks",
+				"Simon Sinek TED talks",
+				"Amy Cuddy TED talks",
+				"Mel Robbins TED talks",
+				"Esther Perel TED talks",
+				"Bill Gates TED talks",
+				"Elon Musk TED talks"
+			]
+		}
+		</script>
+
+		<!-- JSON-LD Structured Data: FAQPage -->
+		<script type="application/ld+json">
+		{
+			"@context": "https://schema.org",
+			"@type": "FAQPage",
+			"mainEntity": [
+				{
+					"@type": "Question",
+					"name": "What is a TED talk?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "A TED talk is a short, influential presentation given at a TED (Technology, Entertainment, Design) conference or partner event (like TEDx). Typically lasting 18 minutes or less, TED talks cover diverse subjects including science, technology, business, culture, design, and personal growth. They are recorded and distributed free of charge online to spread 'ideas worth spreading'."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What does TED talk stand for?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "TED stands for Technology, Entertainment, and Design. These three broad subject areas originally shaped the first TED conference in 1984. Today, TED talks have expanded far beyond these topics to include sciences, humanities, business, design, global issues, and personal growth."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What are the top 10 TED Talks of all time?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "The top 10 most-viewed and popular TED talks of all time include: 1. 'Do schools kill creativity?' by Sir Ken Robinson, 2. 'Your body language may shape who you are' by Amy Cuddy, 3. 'How great leaders inspire action' by Simon Sinek, 4. 'The power of vulnerability' by Brené Brown, 5. 'Inside the mind of a master procrastinator' by Tim Urban, 6. '10 ways to have a better conversation' by Celeste Headlee, 7. 'The next outbreak? We're not ready' by Bill Gates, 8. 'My stroke of insight' by Jill Bolte Taylor, 9. 'What makes a good life? Lessons from the longest study on happiness' by Robert Waldinger, and 10. 'The puzzle of motivation' by Dan Pink."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Why is TED Talk so famous?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "TED talks are famous because they synthesize complex ideas into short, engaging, and highly visual presentations that are easily digestible. The format's strict 18-minute limit forces speakers to be concise and impactful. Combined with free online distribution, high production quality, and speakers who are world-class experts or have unique stories, TED talks quickly spread across social media."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What is the most successful Ted talk in history?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Sir Ken Robinson's 2006 presentation, 'Do schools kill creativity?', is widely considered the most successful and popular TED talk in history. It has garnered over 75 million views on the official TED website and YouTube channel, sparking a global conversation about educational systems and creativity."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Who is the youngest TED talk speaker in India?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Various young prodigies have spoken at TEDx events in India. Notable among them is Advait Thakur, an Indian computer programmer and entrepreneur who gave a TEDx talk at the age of 9. Other young speakers include child prodigies like Kautilya Pandit and Tilak Mehta, who presented their ideas at local TEDx conferences."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What is the most watched Ted Talk?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "The most watched TED talk is 'Do schools kill creativity?' by education expert Sir Ken Robinson. First delivered at the TED2006 conference, this talk has accumulated more than 75 million combined views across official platforms, remaining the ultimate fan-favorite."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Do TED talkers get paid?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "No, speakers at official TED conferences do not get paid a speaker fee. However, TED covers their travel costs, accommodation, and provides tickets to the multi-day conference. Speakers benefit from massive global exposure, professional speaker coaching, and the prestige associated with giving a TED talk. Most TEDx events operate similarly and do not pay speakers."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What is the most inspiring Ted talk?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "While inspiration is subjective, Brené Brown's 'The power of vulnerability' is widely cited as the most inspiring TED talk, helping millions embrace vulnerability and build stronger connections. Other highly inspiring talks include Mel Robbins' 'How to stop screwing yourself over' and Robert Waldinger's study on what makes a good life."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Are TED Talks scripted or unscripted?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "TED talks are highly scripted, structured, and rigorously prepared. Speakers work closely with TED's editorial team and speech coaches for months before the event to refine their message. While talks are designed to feel natural and conversational, every word, slide, and movement is usually planned, memorized, and rehearsed."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "What is the longest Ted talk ever?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Official main-stage TED talks are strictly limited to 18 minutes, though some older talks (like E.O. Wilson's in 2007) ran slightly longer at 22-23 minutes. In contrast, local, independently organized TEDx events can sometimes feature longer talks or panel discussions, but the 18-minute rule remains the golden standard for TED."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Who is the youngest person to give a TED talk?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "Ishita Katyal is one of the youngest people to give a talk at the official TED Youth conference, speaking at age 10 in 2015. On the independent TEDx level, even younger children, such as 7-year-old Molly Wright, have delivered talks (like her 2021 TEDx talk on early childhood development)."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "Who gets chosen for TED Talks?",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "TED speakers are chosen through nominations, open applications, and direct invitations from the TED curation team. They look for scientists, researchers, artists, activists, and builders who have a unique 'idea worth spreading,' backed by evidence or personal experience, and who can present it clearly and engagingly."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "what does ted stand for in ted talks",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "In TED talks, TED stands for Technology, Entertainment, and Design. The organization started in 1984 as a conference where these three fields converged. Since then, the topics have broadened to include almost every discipline imaginable."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "how to do a ted talk",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "To give a TED talk, you should: 1. Define your core 'idea worth spreading' clearly, 2. Apply or get nominated to speak at a main TED event or apply directly to a local, independent TEDx event, 3. Outline your talk focusing on a narrative structure, 4. Keep it under 18 minutes, and 5. Rehearse extensively to deliver a memorable, conversational presentation without notes."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "best ted talks about philosophy and life",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "The best TED talks about philosophy and life include Brené Brown's 'The power of vulnerability' (on living authentically), Dan Gilbert's 'The surprising science of happiness' (on mental resilience), Robert Waldinger's 'What makes a good life?' (on relationships), and Tim Urban's 'Inside the mind of a master procrastinator'."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "best ted talks about communication",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "The best TED talks about communication include Julian Treasure's 'How to speak so that people want to listen,' Celeste Headlee's '10 ways to have a better conversation,' Simon Sinek's 'How great leaders inspire action,' and Amy Cuddy's 'Your body language may shape who you are'."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "ted talks meaning",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "A TED talk is a concise, highly focused presentation designed to explain a single idea clearly and passionately. The goal of a TED talk is to share knowledge, challenge assumptions, and inspire the audience under the tagline 'Ideas Worth Spreading'."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "best ted talks of all time",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "The best TED talks of all time include Sir Ken Robinson's 'Do schools kill creativity?', Amy Cuddy's 'Your body language may shape who you are', Simon Sinek's 'How great leaders inspire action', Brené Brown's 'The power of vulnerability', and Tim Urban's procrastinator talk. These have the highest view counts and global impact."
+					}
+				},
+				{
+					"@type": "Question",
+					"name": "ted talks for kids",
+					"acceptedAnswer": {
+						"@type": "Answer",
+						"text": "The best TED talks for kids include Molly Wright's talk on child development, Arthur Benjamin's 'Mathemagic' speed math, and various TED-Ed animated lessons. TED-Ed is TED's youth and education initiative, offering short, visually engaging educational videos specifically designed for kids and students."
+					}
+				}
+			]
+		}
+		</script>
 	</head>
-	<body>
+	<body class="min-h-screen flex flex-col bg-white text-black selection:bg-ted-red selection:text-white">
 		<slot />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
