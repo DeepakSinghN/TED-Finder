@@ -9,29 +9,38 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const isPlaceholder = (key) => !key || key.toUpperCase().includes("YOUR_") || key.trim() === "" || key.includes("api_key");
+const cleanKey = (k) => {
+  if (!k) return "";
+  return k.trim().replace(/^['"]|['"]$/g, "").trim();
+};
+
+const isPlaceholder = (key) => {
+  const cleaned = cleanKey(key);
+  return !cleaned || cleaned.toUpperCase().includes("YOUR_") || cleaned === "" || cleaned.includes("api_key");
+};
 
 // Parse Gemini Keys list
 const geminiKeys = (process.env.GEMINI_API_KEYS
-  ? process.env.GEMINI_API_KEYS.split(',').map(k => k.trim()).filter(Boolean)
-  : (process.env.GEMINI_API_KEY ? [process.env.GEMINI_API_KEY.trim()] : []))
+  ? process.env.GEMINI_API_KEYS.split(',').map(cleanKey).filter(Boolean)
+  : (process.env.GEMINI_API_KEY ? [cleanKey(process.env.GEMINI_API_KEY)] : []))
   .filter(k => !isPlaceholder(k));
 
 // Parse YouTube Keys list
 const youtubeKeys = (process.env.YOUTUBE_API_KEYS
-  ? process.env.YOUTUBE_API_KEYS.split(',').map(k => k.trim()).filter(Boolean)
-  : (process.env.YOUTUBE_API_KEY ? [process.env.YOUTUBE_API_KEY.trim()] : []))
+  ? process.env.YOUTUBE_API_KEYS.split(',').map(cleanKey).filter(Boolean)
+  : (process.env.YOUTUBE_API_KEY ? [cleanKey(process.env.YOUTUBE_API_KEY)] : []))
   .filter(k => !isPlaceholder(k));
 
 // Parse Grok Keys list
 const grokKeys = (process.env.GROK_API_KEYS
-  ? process.env.GROK_API_KEYS.split(',').map(k => k.trim()).filter(Boolean)
-  : (process.env.GROK_API_KEY ? [process.env.GROK_API_KEY.trim()] : []))
+  ? process.env.GROK_API_KEYS.split(',').map(cleanKey).filter(Boolean)
+  : (process.env.GROK_API_KEY ? [cleanKey(process.env.GROK_API_KEY)] : []))
   .filter(k => !isPlaceholder(k));
 
 console.log(`Configured Gemini API Keys: ${geminiKeys.length}`);
 console.log(`Configured YouTube API Keys: ${youtubeKeys.length}`);
 console.log(`Configured Grok API Keys: ${grokKeys.length}`);
+
 
 // Enable CORS for frontend requests
 app.use(cors());
@@ -191,12 +200,8 @@ Respond ONLY in this JSON format:
         const errText = await response.text();
         const status = response.status;
         console.error(`Gemini API key #${i + 1} failed with status ${status}: ${errText}`);
-        
-        if (status === 429 || status === 403 || status === 503 || status === 504 || status === 400) {
-          lastError = new Error(`Gemini API Error (status ${status}): ${errText}`);
-          continue;
-        }
-        throw new Error(`Gemini API error (${status}): ${errText}`);
+        lastError = new Error(`Gemini API Error (status ${status}): ${errText}`);
+        continue;
       }
       
       const data = await response.json();
@@ -237,12 +242,8 @@ Respond ONLY in this JSON format:
         const errText = await response.text();
         const status = response.status;
         console.error(`Grok API key #${i + 1} failed with status ${status}: ${errText}`);
-        
-        if (status === 429 || status === 403 || status === 503 || status === 504 || status === 400) {
-          lastError = new Error(`Grok API Error (status ${status}): ${errText}`);
-          continue;
-        }
-        throw new Error(`Grok API error (${status}): ${errText}`);
+        lastError = new Error(`Grok API Error (status ${status}): ${errText}`);
+        continue;
       }
       
       const data = await response.json();
@@ -282,17 +283,15 @@ async function fetchWithYoutubeRotation(urlBuilderFn) {
         return response;
       }
 
-      console.error(`YouTube API request with Key #${keyIndex + 1} failed with status ${response.status}`);
+      const errText = await response.text().catch(() => "");
+      console.error(`YouTube API request with Key #${keyIndex + 1} failed with status ${response.status}: ${errText}`);
       
-      if (response.status === 429 || response.status === 403) {
-        lastError = new Error(`QuotaExceeded (status ${response.status})`);
-        continue;
-      }
-
-      return response;
+      lastError = new Error(`YouTube API Error (status ${response.status}): ${errText}`);
+      continue;
     } catch (err) {
       console.error(`YouTube API request with Key #${keyIndex + 1} threw error:`, err.message);
       lastError = err;
+      continue;
     }
   }
 
