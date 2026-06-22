@@ -19,23 +19,18 @@ const isPlaceholder = (key) => {
   return !cleaned || cleaned.toUpperCase().includes("YOUR_") || cleaned === "" || cleaned.includes("api_key");
 };
 
-// Parse Gemini Keys list
-const geminiKeys = (process.env.GEMINI_API_KEYS
-  ? process.env.GEMINI_API_KEYS.split(',').map(cleanKey).filter(Boolean)
-  : (process.env.GEMINI_API_KEY ? [cleanKey(process.env.GEMINI_API_KEY)] : []))
-  .filter(k => !isPlaceholder(k));
+const parseKeys = (envKeys, envKey) => {
+  const raw = envKeys || envKey || "";
+  return raw
+    .split(',')
+    .map(cleanKey)
+    .filter(Boolean)
+    .filter(k => !isPlaceholder(k));
+};
 
-// Parse YouTube Keys list
-const youtubeKeys = (process.env.YOUTUBE_API_KEYS
-  ? process.env.YOUTUBE_API_KEYS.split(',').map(cleanKey).filter(Boolean)
-  : (process.env.YOUTUBE_API_KEY ? [cleanKey(process.env.YOUTUBE_API_KEY)] : []))
-  .filter(k => !isPlaceholder(k));
-
-// Parse Grok Keys list
-const grokKeys = (process.env.GROK_API_KEYS
-  ? process.env.GROK_API_KEYS.split(',').map(cleanKey).filter(Boolean)
-  : (process.env.GROK_API_KEY ? [cleanKey(process.env.GROK_API_KEY)] : []))
-  .filter(k => !isPlaceholder(k));
+const geminiKeys = parseKeys(process.env.GEMINI_API_KEYS, process.env.GEMINI_API_KEY);
+const youtubeKeys = parseKeys(process.env.YOUTUBE_API_KEYS, process.env.YOUTUBE_API_KEY);
+const grokKeys = parseKeys(process.env.GROK_API_KEYS, process.env.GROK_API_KEY);
 
 console.log(`Configured Gemini API Keys: ${geminiKeys.length}`);
 console.log(`Configured YouTube API Keys: ${youtubeKeys.length}`);
