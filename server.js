@@ -7,6 +7,7 @@ import rateLimit from 'express-rate-limit';
 dotenv.config();
 
 const app = express();
+app.set('trust proxy', 1);
 const PORT = process.env.PORT || 3001;
 
 const cleanKey = (k) => {
@@ -178,36 +179,40 @@ Respond ONLY in this JSON format:
   // 1. Try Gemini keys first
   for (let i = 0; i < geminiKeys.length; i++) {
     const key = geminiKeys[i];
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${key}`;
-    console.log(`Attempting Gemini API request with Key #${i + 1}...`);
+    const models = ["gemini-2.5-flash", "gemini-1.5-flash"];
     
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { responseMimeType: "application/json" }
-        })
-      });
+    for (const model of models) {
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`;
+      console.log(`Attempting Gemini API request with Key #${i + 1} using model ${model}...`);
       
-      if (!response.ok) {
-        const errText = await response.text();
-        const status = response.status;
-        console.error(`Gemini API key #${i + 1} failed with status ${status}: ${errText}`);
-        lastError = new Error(`Gemini API Error (status ${status}): ${errText}`);
-        continue;
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: prompt }] }],
+            generationConfig: { responseMimeType: "application/json" }
+          })
+        });
+        
+        if (!response.ok) {
+          const errText = await response.text();
+          const status = response.status;
+          console.error(`Gemini API key #${i + 1} (${model}) failed with status ${status}: ${errText}`);
+          lastError = new Error(`Gemini API Error (status ${status}): ${errText}`);
+          continue; // Try next model or next key
+        }
+        
+        const data = await response.json();
+        let text = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
+        if (text.startsWith("```")) {
+          text = text.replace(/^```json\s*/, "").replace(/```$/, "").trim();
+        }
+        return JSON.parse(text);
+      } catch (err) {
+        console.error(`Gemini Key #${i + 1} (${model}) request threw error:`, err.message);
+        lastError = err;
       }
-      
-      const data = await response.json();
-      let text = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
-      if (text.startsWith("```")) {
-        text = text.replace(/^```json\s*/, "").replace(/```$/, "").trim();
-      }
-      return JSON.parse(text);
-    } catch (err) {
-      console.error(`Gemini Key #${i + 1} request threw error:`, err.message);
-      lastError = err;
     }
   }
 
