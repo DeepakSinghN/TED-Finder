@@ -18,7 +18,13 @@ const PORT = process.env.PORT || 3001;
 // CORS configuration (allow local dev & production domain)
 const allowedOrigins = process.env.ALLOWED_ORIGINS
   ? process.env.ALLOWED_ORIGINS.split(',').map(s => s.trim())
-  : ['http://localhost:4321', 'http://127.0.0.1:4321', 'https://ted-finder.pages.dev', 'https://tedtalksfinder.com'];
+  : [
+      'http://localhost:4321',
+      'http://127.0.0.1:4321',
+      'https://tedtalksfinder.com',
+      'https://www.tedtalksfinder.com',
+      'https://ted-finder.pages.dev'
+    ];
 
 app.use(cors({
   origin: (origin, callback) => {
