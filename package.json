@@ -19,18 +19,18 @@
     "deploy": "astro build && wrangler pages deploy dist --project-name ted-finder --branch main"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "@tailwindcss/vite": "^4.3.1",
     "astro": "^6.4.7",
     "better-sqlite3": "^13.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
-    "express-rate-limit": "^8.5.2"
+    "express-rate-limit": "^8.5.2",
+    "tailwindcss": "^4.3.1"
   },
   "devDependencies": {
-    "@astrojs/sitemap": "^3.7.3",
-    "@tailwindcss/vite": "^4.3.1",
     "concurrently": "^10.0.3",
-    "tailwindcss": "^4.3.1",
     "wrangler": "^4.103.0"
   }
 }
