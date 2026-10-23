@@ -1,0 +1,293 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+---
+
+<Layout
+  title="AI Learning Path — Talk Finder 2.0"
+  description="Personalized, ordered learning roadmap of world-class talks designed to help you achieve your goals."
+>
+  <Header activePage="none" />
+
+  <main class="flex-grow bg-[#F4F4F4] min-h-screen py-10 px-4 sm:py-16 sm:px-6 md:px-12">
+    <div class="max-w-4xl mx-auto">
+      <!-- Loading State -->
+      <div id="path-loading" class="text-center py-24">
+        <div class="inline-block animate-spin w-8 h-8 border-4 border-gray-300 border-t-[#EB0028] rounded-full mb-4"></div>
+        <p class="text-sm font-bold uppercase tracking-widest text-gray-600">Loading Learning Path...</p>
+      </div>
+
+      <!-- Error State -->
+      <div id="path-error" class="hidden bg-white border border-gray-300 p-8 text-center max-w-lg mx-auto">
+        <div class="text-[#EB0028] text-3xl mb-3">⚠️</div>
+        <h2 class="text-xl font-bold uppercase text-black mb-2">Learning Path Not Found</h2>
+        <p id="error-desc" class="text-xs text-gray-600 mb-6">This learning path may have expired or the link is invalid.</p>
+        <a href="/" class="bg-black text-white px-6 py-3 text-xs font-bold uppercase tracking-wider hover:bg-[#EB0028] transition-colors">
+          Return to Home
+        </a>
+      </div>
+
+      <!-- Path Content -->
+      <div id="path-content" class="hidden space-y-8">
+        <!-- Hero Card -->
+        <div class="bg-black text-white p-6 sm:p-10 border-b-4 border-[#EB0028] shadow-sm">
+          <div class="flex flex-wrap items-center justify-between gap-3 mb-4">
+            <span class="text-[10px] sm:text-xs font-extrabold uppercase tracking-widest text-[#EB0028] bg-[#1A1A1A] px-3 py-1">
+              AI-Curated Learning Path
+            </span>
+            <button
+              id="share-btn"
+              type="button"
+              class="border border-gray-700 hover:border-white px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-gray-300 hover:text-white transition-colors cursor-pointer flex items-center gap-1.5"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
+                <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/>
+              </svg>
+              <span id="share-text">Share Path</span>
+            </button>
+          </div>
+
+          <h1 id="path-title" class="text-2xl sm:text-4xl font-extrabold uppercase tracking-tight leading-tight mb-4 text-white">
+            Path Title
+          </h1>
+
+          <p id="path-overview" class="text-xs sm:text-sm text-gray-300 leading-relaxed max-w-3xl mb-6">
+            Overview description
+          </p>
+
+          <!-- Metrics Row -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-gray-800 pt-6 text-center sm:text-left">
+            <div>
+              <span class="block text-[10px] text-gray-500 uppercase font-semibold">Goal</span>
+              <span id="path-goal" class="text-xs font-bold text-white truncate block">User Goal</span>
+            </div>
+            <div>
+              <span class="block text-[10px] text-gray-500 uppercase font-semibold">Total Talks</span>
+              <span id="path-total-talks" class="text-xs font-bold text-white">0 Talks</span>
+            </div>
+            <div>
+              <span class="block text-[10px] text-gray-500 uppercase font-semibold">Estimated Time</span>
+              <span id="path-duration" class="text-xs font-bold text-white">0 min</span>
+            </div>
+            <div>
+              <span class="block text-[10px] text-gray-500 uppercase font-semibold">Progress</span>
+              <span id="path-progress-text" class="text-xs font-bold text-[#EB0028]">0%</span>
+            </div>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="w-full bg-gray-900 h-1.5 mt-5 overflow-hidden">
+            <div id="path-progress-bar" class="bg-[#EB0028] h-full w-0 transition-all duration-300"></div>
+          </div>
+        </div>
+
+        <!-- Steps Timeline Header -->
+        <div class="flex items-center justify-between pb-2 border-b border-gray-300">
+          <h2 class="text-sm font-extrabold uppercase tracking-wider text-black">
+            Sequential Syllabus
+          </h2>
+          <span class="text-xs text-gray-500 font-medium">Follow steps in order</span>
+        </div>
+
+        <!-- Steps List -->
+        <div id="steps-container" class="space-y-6">
+          <!-- Dynamically Injected Cards -->
+        </div>
+      </div>
+    </div>
+  </main>
+</Layout>
+
+<script>
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("slug") || window.location.pathname.split("/").filter(Boolean).pop();
+
+  const loadingEl = document.getElementById("path-loading") as HTMLDivElement;
+  const errorEl = document.getElementById("path-error") as HTMLDivElement;
+  const errorDesc = document.getElementById("error-desc") as HTMLParagraphElement;
+  const contentEl = document.getElementById("path-content") as HTMLDivElement;
+
+  const pathTitle = document.getElementById("path-title") as HTMLHeadingElement;
+  const pathOverview = document.getElementById("path-overview") as HTMLParagraphElement;
+  const pathGoal = document.getElementById("path-goal") as HTMLSpanElement;
+  const pathTotalTalks = document.getElementById("path-total-talks") as HTMLSpanElement;
+  const pathDuration = document.getElementById("path-duration") as HTMLSpanElement;
+  const pathProgressText = document.getElementById("path-progress-text") as HTMLSpanElement;
+  const pathProgressBar = document.getElementById("path-progress-bar") as HTMLDivElement;
+  const stepsContainer = document.getElementById("steps-container") as HTMLDivElement;
+  const shareBtn = document.getElementById("share-btn") as HTMLButtonElement;
+  const shareText = document.getElementById("share-text") as HTMLSpanElement;
+
+  const BACKEND_URL =
+    (import.meta as any).env.PUBLIC_BACKEND_URL || "http://localhost:3001";
+
+  let pathData: any = null;
+
+  async function loadPath() {
+    if (!slug || slug === "path") return showError("No learning path specified. Please provide a path link.");
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/paths/${slug}`);
+      if (!response.ok) {
+        throw new Error("Path not found");
+      }
+      const data = await response.json();
+      pathData = data.path;
+      renderPath(pathData);
+    } catch (err: any) {
+      showError(err.message || "Failed to load learning path.");
+    }
+  }
+
+  function showError(msg: string) {
+    loadingEl.classList.add("hidden");
+    contentEl.classList.add("hidden");
+    errorDesc.textContent = msg;
+    errorEl.classList.remove("hidden");
+  }
+
+  function updateProgress() {
+    if (!pathData) return;
+    const items = pathData.items || [];
+    const watched = items.filter((it: any) => it.isWatched).length;
+    const pct = Math.round((watched / (items.length || 1)) * 100);
+    pathProgressText.textContent = `${pct}% (${watched}/${items.length})`;
+    pathProgressBar.style.width = `${pct}%`;
+  }
+
+  function renderPath(path: any) {
+    loadingEl.classList.add("hidden");
+    errorEl.classList.add("hidden");
+    contentEl.classList.remove("hidden");
+
+    pathTitle.textContent = path.title;
+    pathOverview.textContent = path.overview;
+    pathGoal.textContent = path.goal_text;
+    pathTotalTalks.textContent = `${path.totalTalks} Talks`;
+    pathDuration.textContent = path.totalDurationFormatted;
+
+    updateProgress();
+
+    stepsContainer.innerHTML = "";
+
+    (path.items || []).forEach((item: any) => {
+      const card = document.createElement("div");
+      card.className =
+        "bg-white border border-gray-200 p-5 sm:p-7 shadow-xs relative transition-all";
+
+      card.innerHTML = `
+        <div class="flex flex-col md:flex-row gap-6">
+          <div class="md:w-64 shrink-0">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="bg-[#EB0028] text-white text-[10px] font-black uppercase px-2 py-0.5">
+                Step 0${item.position}
+              </span>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-gray-500">
+                ${item.talk.channelName}
+              </span>
+            </div>
+            <div class="aspect-video w-full bg-black relative overflow-hidden">
+              <img 
+                src="${item.talk.thumbnail}" 
+                alt="${item.talk.title}"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+              <span class="absolute bottom-1.5 right-1.5 bg-black/80 text-white text-[9px] font-bold px-1.5 py-0.5">
+                ${item.talk.duration}
+              </span>
+            </div>
+          </div>
+
+          <div class="flex-grow flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-1">
+                <span class="text-xs font-extrabold uppercase tracking-widest text-[#EB0028]">
+                  ${item.talk.speaker}
+                </span>
+                <label class="flex items-center gap-1.5 cursor-pointer select-none text-[11px] font-bold uppercase text-gray-600 hover:text-black">
+                  <input 
+                    type="checkbox" 
+                    class="watched-toggle accent-[#EB0028] w-4 h-4 cursor-pointer" 
+                    data-item-id="${item.itemId}"
+                    ${item.isWatched ? "checked" : ""}
+                  />
+                  <span>Watched</span>
+                </label>
+              </div>
+
+              <h3 class="text-base sm:text-lg font-bold text-gray-900 leading-snug uppercase mb-3">
+                ${item.talk.title}
+              </h3>
+
+              <p class="text-xs text-gray-700 italic border-l-2 border-[#EB0028] pl-3 mb-4">
+                ${item.whyThisTalk}
+              </p>
+
+              <div class="grid sm:grid-cols-2 gap-3 text-xs mb-4">
+                <div class="bg-gray-50 p-3 border border-gray-200">
+                  <span class="block text-[10px] font-bold uppercase tracking-wider text-gray-500 mb-1">
+                    Key Takeaway
+                  </span>
+                  <p class="text-gray-800 leading-relaxed">${item.keyTakeaway}</p>
+                </div>
+                <div class="bg-red-50/50 p-3 border border-red-100">
+                  <span class="block text-[10px] font-bold uppercase tracking-wider text-[#EB0028] mb-1">
+                    Your Action Step
+                  </span>
+                  <p class="text-gray-900 leading-relaxed font-medium">${item.actionStep}</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-2">
+              <a 
+                href="${item.talk.youtubeLink}" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-block bg-black text-white px-5 py-2.5 text-[11px] font-bold uppercase tracking-wider hover:bg-[#EB0028] transition-colors"
+              >
+                Watch on YouTube &rarr;
+              </a>
+            </div>
+          </div>
+        </div>
+      `;
+
+      stepsContainer.appendChild(card);
+    });
+
+    document.querySelectorAll(".watched-toggle").forEach((cb: any) => {
+      cb.addEventListener("change", async (e: any) => {
+        const itemId = e.target.getAttribute("data-item-id");
+        const isWatched = e.target.checked;
+
+        const targetItem = pathData.items.find((it: any) => it.itemId === itemId);
+        if (targetItem) targetItem.isWatched = isWatched;
+        updateProgress();
+
+        try {
+          await fetch(`${BACKEND_URL}/api/paths/${slug}/items/${itemId}`, {
+            method: "PATCH",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ isWatched }),
+          });
+        } catch (err) {
+          console.error("Failed to update watched status:", err);
+        }
+      });
+    });
+  }
+
+  if (shareBtn) {
+    shareBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(window.location.href);
+      shareText.textContent = "Link Copied!";
+      setTimeout(() => {
+        shareText.textContent = "Share Path";
+      }, 2500);
+    });
+  }
+
+  loadPath();
+</script>

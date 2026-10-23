@@ -54,15 +54,33 @@ import Header from "../components/Header.astro";
           the official TED YouTube channel.
         </p>
 
+        <!-- Mode Switcher -->
+        <div class="inline-flex p-1 bg-[#1A1A1A] border border-gray-800 max-w-md mx-auto mt-4 sm:mt-6">
+          <button
+            type="button"
+            id="tab-search"
+            class="px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#EB0028] transition-all cursor-pointer"
+          >
+            Find Talks
+          </button>
+          <button
+            type="button"
+            id="tab-path"
+            class="px-4 py-2 text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-white transition-all cursor-pointer flex items-center gap-1.5"
+          >
+            <span>✨ Build Learning Path</span>
+          </button>
+        </div>
+
         <!-- Search Form -->
         <form
           id="search-form"
-          aria-label="Search for TED talks by topic"
-          class="max-w-2xl mx-auto mt-5 sm:mt-8 flex flex-col gap-0 border border-gray-800 focus-within:border-[#EB0028] transition-colors duration-200"
+          aria-label="Search for talks by topic"
+          class="max-w-2xl mx-auto mt-4 flex flex-col gap-0 border border-gray-800 focus-within:border-[#EB0028] transition-colors duration-200"
         >
           <div class="relative flex-grow">
-            <label for="search-input" class="sr-only"
-              >Search TED talks by topic</label
+            <label for="search-input" id="search-label" class="sr-only"
+              >Search talks by topic</label
             >
             <input
               type="text"
@@ -76,10 +94,10 @@ import Header from "../components/Header.astro";
           <button
             type="submit"
             id="search-btn"
-            aria-label="Find TED talks"
+            aria-label="Find talks"
             class="bg-[#EB0028] text-white font-bold uppercase tracking-wider text-sm px-8 py-3.5 sm:py-4 hover:bg-[#c40020] active:bg-[#a10019] transition-colors duration-150 flex items-center justify-center space-x-2 w-full cursor-pointer"
           >
-            <span>Find Talks</span>
+            <span id="btn-text">Find Talks</span>
           </button>
         </form>
 
@@ -1555,7 +1573,32 @@ import Header from "../components/Header.astro";
   let displayedCount = 0;
   const TALKS_PER_PAGE = 6;
 
-  // Tag buttons only fill the input — user still has to click Find Talks
+  const tabSearch = document.getElementById("tab-search") as HTMLButtonElement;
+  const tabPath = document.getElementById("tab-path") as HTMLButtonElement;
+  const btnText = document.getElementById("btn-text") as HTMLSpanElement;
+
+  let currentMode: "search" | "path" = "search";
+
+  if (tabSearch && tabPath && btnText) {
+    tabSearch.addEventListener("click", () => {
+      currentMode = "search";
+      tabSearch.className = "px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#EB0028] transition-all cursor-pointer";
+      tabPath.className = "px-4 py-2 text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-white transition-all cursor-pointer flex items-center gap-1.5";
+      input.placeholder = "e.g. philosophy, communication, media...";
+      btnText.textContent = "Find Talks";
+    });
+
+    tabPath.addEventListener("click", () => {
+      currentMode = "path";
+      tabPath.className = "px-4 py-2 text-xs font-bold uppercase tracking-wider text-white bg-[#EB0028] transition-all cursor-pointer flex items-center gap-1.5";
+      tabSearch.className = "px-4 py-2 text-xs font-bold uppercase tracking-wider text-gray-400 hover:text-white transition-all cursor-pointer";
+      input.placeholder = "e.g. I want to build confidence before job interviews...";
+      btnText.textContent = "✨ Generate My Learning Path";
+      input.focus();
+    });
+  }
+
+  // Tag buttons only fill the input
   tagButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       input.value = (btn.textContent || "").trim();
@@ -1565,19 +1608,79 @@ import Header from "../components/Header.astro";
 
   retryBtn.addEventListener("click", () => {
     if (input.value.trim()) {
-      performSearch(input.value);
+      handleFormSubmit();
     }
   });
 
   // Trigger on button click OR Enter key
   searchBtn.addEventListener("click", () => {
-    performSearch(input.value);
+    handleFormSubmit();
   });
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    performSearch(input.value);
+    handleFormSubmit();
   });
+
+  function handleFormSubmit() {
+    if (currentMode === "path") {
+      generateLearningPath(input.value);
+    } else {
+      performSearch(input.value);
+    }
+  }
+
+  async function generateLearningPath(goal: string) {
+    if (!goal || !goal.trim()) return;
+
+    document
+      .getElementById("results-section")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const loadingKeyword = document.getElementById("loading-keyword");
+    
+    const stages = [
+      `Searching verified talks for "${goal.trim()}"...`,
+      `Sequencing progressive 5-step roadmap...`,
+      `Extracting core key takeaways & weekly action steps...`,
+      `Finalizing your personalized learning path...`
+    ];
+    let stageIdx = 0;
+    let stageInterval: any = null;
+
+    if (loadingKeyword) {
+      loadingKeyword.textContent = stages[0];
+      stageInterval = setInterval(() => {
+        stageIdx = (stageIdx + 1) % stages.length;
+        loadingKeyword.textContent = stages[stageIdx];
+      }, 2400);
+    }
+
+    showState("loading");
+    searchBtn.disabled = true;
+
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/paths`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ goal: goal.trim() }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error || "Failed to generate learning path.");
+      }
+
+      // Seamless redirect to the newly created path page
+      window.location.href = `/path?slug=${data.path.slug}`;
+    } catch (err: any) {
+      console.error("Path generation failed:", err);
+      errorText.textContent = err.message || "Failed to generate learning path. Please try again.";
+      showState("error");
+    } finally {
+      if (stageInterval) clearInterval(stageInterval);
+      searchBtn.disabled = false;
+    }
+  }
 
   async function performSearch(topic: string) {
     if (!topic || !topic.trim()) return;
@@ -1701,11 +1804,9 @@ import Header from "../components/Header.astro";
   }
 
   // Decoder element to handle YouTube API HTML entities
-  const decoderEl = document.createElement("textarea");
   function escapeHtml(str: string): string {
     if (!str) return "";
-    decoderEl.innerHTML = str;
-    return decoderEl.value
+    return str
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")

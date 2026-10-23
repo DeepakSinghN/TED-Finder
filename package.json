@@ -12,11 +12,15 @@
     "astro": "astro",
     "start": "node server.js",
     "server": "node --watch server.js",
-    "dev:all": "concurrently \"astro dev\" \"node --watch server.js\"",
+    "dev:all": "concurrently -k \"npm:dev\" \"npm:server\"",
+    "ingest": "node scripts/ingest.js",
+    "sync:rss": "node scripts/rssSync.js",
+    "seed": "node db/seedChannels.js",
     "deploy": "astro build && wrangler pages deploy dist --project-name ted-finder --branch main"
   },
   "dependencies": {
     "astro": "^6.4.7",
+    "better-sqlite3": "^13.0.3",
     "cors": "^2.8.6",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",

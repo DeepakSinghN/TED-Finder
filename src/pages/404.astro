@@ -60,8 +60,16 @@ import Header from '../components/Header.astro';
   <footer class="bg-black border-t border-gray-900 py-6 px-6 text-center text-[10px] text-gray-600">
     &copy; 2026 TED Talk Finder &mdash;
     <a href="/" class="hover:text-white transition-colors duration-150">Home</a> &middot;
-    <a href="/contact" class="hover:text-white transition-colors duration-150">Contact</a>
   </footer>
+  <script is:inline>
+    const pathname = window.location.pathname;
+    if (pathname.includes('/path/')) {
+      const slug = pathname.split('/').filter(Boolean).pop();
+      if (slug && slug !== 'path') {
+        window.location.replace('/path?slug=' + encodeURIComponent(slug));
+      }
+    }
+  </script>
 </Layout>
 
 <style>

@@ -20,5 +20,9 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# SQLite WAL temporary files
+data/*.db-wal
+data/*.db-shm
+
 # jetbrains setting folder
 .idea/
