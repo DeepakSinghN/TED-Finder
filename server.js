@@ -83,6 +83,11 @@ const contactLimiter = rateLimit({
 // API Endpoints
 // -------------------------------------------------------------
 
+// Health check endpoint for UptimeRobot / cron pings (Zero DB / Zero API overhead)
+app.get('/health', (req, res) => {
+  res.json({ status: 'ok', uptime: Math.floor(process.uptime()) });
+});
+
 // 1. GET /api/channels — List active channels for filter pills
 app.get('/api/channels', (req, res) => {
   try {
