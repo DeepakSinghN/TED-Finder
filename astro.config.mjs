@@ -7,6 +7,9 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://tedtalksfinder.com',
   trailingSlash: 'never',
+  build: {
+    format: 'file',
+  },
   integrations: [
     sitemap({
       // Exclude error pages — they should never appear in search results
