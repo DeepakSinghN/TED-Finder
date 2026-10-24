@@ -7,14 +7,16 @@ interface Props {
 	canonicalUrl?: string;
 	ogImage?: string;
 	ogType?: string;
+	noindex?: boolean;
 }
 
 const {
-	title = "TED Talk Finder — Discover the Best TED Talks on Any Topic",
-	description = "Find the best TED Talks on philosophy, life, communication, media, and more. AI-powered search tool that verifies real TED talk videos on YouTube. Explore Simon Sinek, Amy Cuddy, Mel Robbins, Esther Perel, Bill Gates & Elon Musk TED talks.",
+	title = "TED Talks Search Engine — Find & Discover the Best TED Talks",
+	description = "Free AI-powered TED talks search engine. Search 4,000+ verified TED and TEDx talks, speakers, and topics with instant YouTube playback and smart summaries.",
 	canonicalUrl = "https://tedtalksfinder.com/",
 	ogImage = "https://tedtalksfinder.com/og-image.jpg",
 	ogType = "website",
+	noindex = false,
 } = Astro.props;
 
 const siteName = "TED Talk Finder";
@@ -51,8 +53,8 @@ const twitterHandle = "@tedtalkfinder";
 		<meta name="description" content={description} />
 		<meta name="keywords" content="TED talks, best ted talks, ted talks topics, best ted talks about philosophy and life, best ted talks about communication, ted talk on media, media ted talk, ted talk meaning, what is a ted talk, ted talk about media, ted talk youtube, ted talk videos, ted talk topics, simon sinek ted talk, amy cuddy ted talk, mel robbins ted talk, esther perel ted talk, bill gates ted talks, elon musk ted talks, ted talks 2024, ted talks 2025, find ted talks" />
 		<meta name="author" content="TED Talk Finder" />
-		<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
-		<meta name="googlebot" content="index, follow" />
+		<meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"} />
+		<meta name="googlebot" content={noindex ? "noindex, nofollow" : "index, follow"} />
 		<meta name="generator" content={Astro.generator} />
 
 		<!-- Canonical URL -->
@@ -122,16 +124,11 @@ const twitterHandle = "@tedtalkfinder";
 			"applicationCategory": "EducationalApplication",
 			"operatingSystem": "Web",
 			"url": "https://tedtalksfinder.com/",
-			"description": "Find the best TED Talks on philosophy, life, communication, media, and more with AI-powered verification from the official TED YouTube channel.",
+			"description": "AI-powered TED talks search engine to find and explore verified TED & TEDx talk videos, speakers, and topics.",
 			"offers": {
 				"@type": "Offer",
 				"price": "0",
 				"priceCurrency": "USD"
-			},
-			"aggregateRating": {
-				"@type": "AggregateRating",
-				"ratingValue": "4.9",
-				"ratingCount": "1250"
 			},
 			"featureList": [
 				"AI-powered TED talk discovery",

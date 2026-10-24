@@ -6,6 +6,7 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://tedtalksfinder.com',
+  trailingSlash: 'never',
   integrations: [
     sitemap({
       // Exclude error pages — they should never appear in search results

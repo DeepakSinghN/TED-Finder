@@ -1,6 +1,6 @@
 ---
 interface Props {
-  activePage?: "search" | "watch" | "about" | "contact" | "none";
+  activePage?: "search" | "watch" | "blog" | "about" | "contact" | "none";
 }
 
 const { activePage = "none" } = Astro.props;
@@ -39,6 +39,14 @@ const { activePage = "none" } = Astro.props;
         : "hover:text-white transition-colors duration-150"}
     >
       Watch
+    </a>
+    <a
+      href="/blog"
+      class={activePage === "blog"
+        ? "text-[#EB0028] border-b-2 border-[#EB0028] pb-1 font-bold"
+        : "hover:text-white transition-colors duration-150"}
+    >
+      Blog
     </a>
     <a
       href="/about"
@@ -99,6 +107,12 @@ const { activePage = "none" } = Astro.props;
       class={`text-base font-bold uppercase tracking-wider ${activePage === "watch" ? "text-[#EB0028]" : "text-gray-300 hover:text-white"}`}
     >
       Watch
+    </a>
+    <a
+      href="/blog"
+      class={`text-base font-bold uppercase tracking-wider ${activePage === "blog" ? "text-[#EB0028]" : "text-gray-300 hover:text-white"}`}
+    >
+      Blog
     </a>
     <a
       href="/about"

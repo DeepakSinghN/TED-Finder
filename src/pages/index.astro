@@ -1,11 +1,43 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
+import { CURATED_TALKS } from "../../db/curatedTalks.js";
+
+// Featured iconic talks pre-rendered directly into HTML for Googlebot indexing
+const featuredTalks = [
+  CURATED_TALKS[0], // Brené Brown
+  CURATED_TALKS[1], // Tim Urban
+  CURATED_TALKS[4], // Simon Sinek
+  CURATED_TALKS[3], // Amy Cuddy
+  CURATED_TALKS[6], // Julian Treasure
+  CURATED_TALKS[7], // Robert Waldinger
+];
+
+const videoSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Featured Curated TED & TEDx Talks",
+  "description": "Verified high-impact TED talk videos with key takeaways and official YouTube links.",
+  "itemListElement": featuredTalks.map((talk, idx) => ({
+    "@type": "ListItem",
+    "position": idx + 1,
+    "item": {
+      "@type": "VideoObject",
+      "name": `${talk.title} — ${talk.speaker}`,
+      "description": talk.summary || talk.description,
+      "thumbnailUrl": talk.thumbnail_url,
+      "uploadDate": talk.published_at,
+      "contentUrl": `https://www.youtube.com/watch?v=${talk.video_id}`,
+      "embedUrl": `https://www.youtube.com/embed/${talk.video_id}`,
+      "duration": `PT${Math.floor(talk.duration_sec / 60)}M${talk.duration_sec % 60}S`
+    }
+  }))
+};
 ---
 
 <Layout
-  title="TED Talk Finder — Find the Best TED Talks on Any Topic"
-  description="Discover the best TED talks on philosophy, life, communication, media, and more. AI-powered tool that verifies Simon Sinek, Amy Cuddy, Mel Robbins, Esther Perel, Bill Gates & Elon Musk TED talks directly from the official YouTube channel."
+  title="TED Talks Search Engine — Find & Discover the Best TED Talks"
+  description="Free AI-powered TED talks search engine. Search 4,000+ verified TED and TEDx talks, speakers, and topics with instant YouTube playback and smart summaries."
   canonicalUrl="https://tedtalksfinder.com/"
 >
   <!-- Header -->
@@ -21,7 +53,7 @@ import Header from "../components/Header.astro";
           <p
             class="text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-widest text-[#EB0028]"
           >
-            Verified from Official TED YouTube Channel
+            AI-Powered TED Talks Search Engine • Official TED Verified
           </p>
           <h1
             class="text-3xl sm:text-5xl md:text-7xl font-extrabold tracking-normal uppercase leading-[1.05] flex flex-col items-center gap-3 sm:gap-4"
@@ -107,44 +139,44 @@ import Header from "../components/Header.astro";
             class="flex flex-wrap justify-center gap-1.5 sm:gap-2 max-w-2xl mx-auto text-[11px] sm:text-xs text-gray-400"
           >
             <span class="self-center font-semibold">Popular:</span>
-            <button
-              type="button"
-              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
+            <a
+              href="/?q=philosophy+and+life"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150 inline-block"
               aria-label="Search TED talks about philosophy and life"
-              >philosophy and life</button
+              >philosophy and life</a
             >
-            <button
-              type="button"
-              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
+            <a
+              href="/?q=communication"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150 inline-block"
               aria-label="Search TED talks about communication"
-              >communication</button
+              >communication</a
             >
-            <button
-              type="button"
-              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
-              aria-label="Search TED talks about media">media</button
+            <a
+              href="/?q=media"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150 inline-block"
+              aria-label="Search TED talks about media">media</a
             >
-            <button
-              type="button"
-              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
-              aria-label="Search TED talks about leadership">leadership</button
+            <a
+              href="/?q=leadership"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150 inline-block"
+              aria-label="Search TED talks about leadership">leadership</a
             >
-            <button
-              type="button"
-              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
+            <a
+              href="/?q=procrastination"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150 inline-block"
               aria-label="Search TED talks about procrastination"
-              >procrastination</button
+              >procrastination</a
             >
-            <button
-              type="button"
-              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
+            <a
+              href="/?q=mental+health"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150 inline-block"
               aria-label="Search TED talks about mental health"
-              >mental health</button
+              >mental health</a
             >
-            <button
-              type="button"
-              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150"
-              aria-label="Search TED talks about AI ethics">AI ethics</button
+            <a
+              href="/?q=AI+ethics"
+              class="tag-btn border border-gray-800 px-3 py-1 hover:border-gray-500 hover:text-white transition-colors duration-150 inline-block"
+              aria-label="Search TED talks about AI ethics">AI ethics</a
             >
           </div>
         </nav>
@@ -218,15 +250,57 @@ import Header from "../components/Header.astro";
               >LATEST ON TED</span
             >
           </div>
+          <!-- VideoObject ItemList Schema for Featured Talks -->
+          <script type="application/ld+json" set:html={JSON.stringify(videoSchema)} />
+
           <div
             id="homepage-recent-grid"
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8"
           >
-            <div
-              class="text-center py-10 text-gray-400 col-span-full animate-pulse text-sm"
-            >
-              Loading featured recent talks...
-            </div>
+            {
+              featuredTalks.map((talk) => (
+                <div class="bg-white border border-gray-200 flex flex-col h-full hover:scale-[1.02] hover:border-gray-400 transition-all duration-200 ease-out group">
+                  <div class="aspect-video w-full bg-black relative overflow-hidden">
+                    <img 
+                      src={talk.thumbnail_url} 
+                      alt={`${talk.title} - ${talk.speaker}`}
+                      class="w-full h-full object-cover group-hover:opacity-90 transition-opacity duration-150"
+                      loading="lazy"
+                    />
+                    <div class="absolute bottom-2 right-2 bg-black/80 px-1.5 py-0.5 text-[9px] sm:text-[10px] font-bold text-white uppercase tracking-wider">
+                      {talk.duration_formatted}
+                    </div>
+                    <div class="absolute inset-0 bg-[#EB0028]/25 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-150">
+                      <div class="bg-[#EB0028] text-white p-2.5 sm:p-3 rounded-full shadow-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 sm:h-6 sm:w-6 fill-current" viewBox="0 0 24 24">
+                          <path d="M8 5v14l11-7z" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="p-4 sm:p-6 flex flex-col flex-grow">
+                    <div class="flex justify-between items-center mb-1 sm:mb-1.5 gap-2">
+                      <span class="text-[9px] sm:text-[10px] font-extrabold uppercase tracking-widest text-[#EB0028] truncate">{talk.speaker}</span>
+                      <span class="text-[9px] sm:text-[10px] text-gray-500 font-semibold uppercase tracking-wider shrink-0">{talk.duration_formatted}</span>
+                    </div>
+                    <h3 class="text-sm sm:text-base md:text-lg font-bold text-gray-900 leading-tight mb-2 sm:mb-3 line-clamp-2 uppercase">
+                      {talk.title}
+                    </h3>
+                    <p class="text-xs sm:text-sm text-gray-600 font-normal leading-relaxed mb-4 sm:mb-6 line-clamp-3">
+                      {talk.summary || talk.description}
+                    </p>
+                    <a 
+                      href={`https://www.youtube.com/watch?v=${talk.video_id}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      class="mt-auto w-full bg-black text-white text-center py-2.5 sm:py-3 text-[11px] sm:text-xs font-bold uppercase tracking-wider hover:bg-[#EB0028] transition-colors duration-150"
+                    >
+                      Watch on YouTube
+                    </a>
+                  </div>
+                </div>
+              ))
+            }
           </div>
         </div>
 
@@ -1455,6 +1529,13 @@ import Header from "../components/Header.astro";
           </li>
           <li>
             <a
+              href="/blog"
+              class="hover:text-white transition-colors duration-150"
+              >Blog &amp; Guides</a
+            >
+          </li>
+          <li>
+            <a
               href="/about"
               class="hover:text-white transition-colors duration-150"
               >About Us</a
@@ -1598,11 +1679,16 @@ import Header from "../components/Header.astro";
     });
   }
 
-  // Tag buttons only fill the input
+  // Tag links: fill input and immediately search smoothly
   tagButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      input.value = (btn.textContent || "").trim();
-      input.focus();
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const topic = (btn.textContent || "").trim();
+      input.value = topic;
+      const url = new URL(window.location.href);
+      url.searchParams.set("q", topic);
+      window.history.pushState({}, "", url.toString());
+      performSearch(topic);
     });
   });
 
@@ -1884,31 +1970,34 @@ import Header from "../components/Header.astro";
     }
   }
 
-  // Fetch featured recent uploads on page load
+  // Fetch featured recent uploads in background (updates pre-rendered cards if new talks exist)
   async function loadFeaturedTalks() {
     try {
       const response = await fetch(`${BACKEND_URL}/api/recent-uploads`);
-      if (!response.ok) throw new Error("Failed to load");
+      if (!response.ok) return; // Keep pre-rendered talks
       const data = await response.json();
       const results = data.results || [];
 
-      homepageRecentGrid.innerHTML = "";
-
-      if (results.length === 0) {
-        homepageRecentGrid.innerHTML = `<div class="text-center py-12 text-gray-400 col-span-full">No recent talks available.</div>`;
-        return;
+      if (results && results.length > 0) {
+        homepageRecentGrid.innerHTML = "";
+        results.forEach((talk: any) => {
+          const card = createCardElement(talk);
+          homepageRecentGrid.appendChild(card);
+        });
       }
-
-      results.forEach((talk: any) => {
-        const card = createCardElement(talk);
-        homepageRecentGrid.appendChild(card);
-      });
     } catch (err) {
-      console.error("Failed to load featured talks:", err);
-      homepageRecentGrid.innerHTML = `<div class="text-center py-12 text-gray-400 col-span-full">Unable to load featured recent talks.</div>`;
+      // Backend cold start or offline — static pre-rendered cards remain visible!
+      console.log("Serving pre-rendered talks:", err);
     }
   }
 
-  // Call on load
-  loadFeaturedTalks();
+  // Call on load: check if ?q= parameter exists
+  const urlParams = new URLSearchParams(window.location.search);
+  const qParam = urlParams.get("q");
+  if (qParam && qParam.trim()) {
+    input.value = qParam.trim();
+    performSearch(qParam.trim());
+  } else {
+    loadFeaturedTalks();
+  }
 </script>

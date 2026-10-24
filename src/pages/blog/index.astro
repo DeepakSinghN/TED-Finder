@@ -1,0 +1,178 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+
+const articles = [
+  {
+    slug: "best-ted-talks-philosophy-life",
+    title: "10 Best TED Talks About Philosophy and Life That Will Change Your Perspective",
+    description: "Explore the most profound TED talks on philosophy, happiness, vulnerability, and meaning in life. Featuring Brené Brown, Robert Waldinger, and Dan Gilbert.",
+    category: "Philosophy & Life",
+    date: "October 24, 2026",
+    readingTime: "7 min read",
+    image: "https://img.youtube.com/vi/iCvmsMzlF7o/hqdefault.jpg",
+    featuredTalk: "The power of vulnerability by Brené Brown"
+  },
+  {
+    slug: "best-ted-talks-communication",
+    title: "7 Best TED Talks About Communication, Public Speaking & Active Listening",
+    description: "Master conversational competence, vocal presence, and body language with the most influential communication TED talks by Julian Treasure, Amy Cuddy, and Celeste Headlee.",
+    category: "Communication",
+    date: "October 24, 2026",
+    readingTime: "6 min read",
+    image: "https://img.youtube.com/vi/eIho2S0ZahI/hqdefault.jpg",
+    featuredTalk: "How to speak so that people want to listen by Julian Treasure"
+  },
+  {
+    slug: "inside-mind-master-procrastinator-summary",
+    title: "Inside the Mind of a Master Procrastinator: Complete Summary & Lessons by Tim Urban",
+    description: "A comprehensive breakdown of Tim Urban's viral 72M+ view TED talk. Understand the Instant Gratification Monkey, the Panic Monster, and how to reclaim your time.",
+    category: "Productivity & Mindset",
+    date: "October 24, 2026",
+    readingTime: "8 min read",
+    image: "https://img.youtube.com/vi/arj7oStGLkU/hqdefault.jpg",
+    featuredTalk: "Inside the mind of a master procrastinator by Tim Urban"
+  }
+];
+
+const blogListSchema = {
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "TED Talk Finder Blog & Insights",
+  "description": "Curated analysis, summaries, and guides covering the highest-impact TED & TEDx talks on philosophy, communication, and human potential.",
+  "url": "https://tedtalksfinder.com/blog",
+  "blogPost": articles.map(art => ({
+    "@type": "BlogPosting",
+    "headline": art.title,
+    "description": art.description,
+    "url": `https://tedtalksfinder.com/blog/${art.slug}`,
+    "datePublished": "2026-10-24"
+  }))
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tedtalksfinder.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://tedtalksfinder.com/blog"
+    }
+  ]
+};
+---
+
+<Layout
+  title="TED Talks Blog — In-Depth Summaries & High-Impact Guides"
+  description="Explore curated analyses, key takeaways, and comprehensive guides for the most famous TED and TEDx talks on philosophy, communication, psychology, and personal growth."
+  canonicalUrl="https://tedtalksfinder.com/blog"
+>
+  <Header activePage="blog" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(blogListSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <main class="flex-grow bg-white">
+    <!-- Hero Section -->
+    <section class="bg-black text-white py-14 sm:py-20 px-4 sm:px-6 md:px-12 border-b border-gray-900">
+      <div class="max-w-4xl mx-auto text-center space-y-4">
+        <!-- Breadcrumb -->
+        <nav aria-label="Breadcrumb" class="mb-2 text-[10px] sm:text-xs uppercase tracking-wider text-gray-500 font-semibold flex justify-center items-center gap-2">
+          <a href="/" class="hover:text-white transition-colors">Home</a>
+          <span>/</span>
+          <span class="text-[#EB0028]">Blog</span>
+        </nav>
+
+        <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-[#EB0028]">
+          Curated Insights &amp; Guides
+        </p>
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight">
+          TED Talks <span class="text-[#EB0028]">Knowledge Hub</span>
+        </h1>
+        <p class="text-gray-400 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">
+          In-depth breakdowns, core takeaways, and viewing roadmaps for world-class talks on philosophy, communication, and human potential.
+        </p>
+      </div>
+    </section>
+
+    <!-- Articles Grid Section -->
+    <section class="py-12 sm:py-16 px-4 sm:px-6 md:px-12 max-w-7xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {articles.map((art) => (
+          <article class="bg-white border border-gray-200 flex flex-col h-full hover:border-gray-400 hover:shadow-lg transition-all duration-200 group">
+            <a href={`/blog/${art.slug}`} class="aspect-video w-full bg-black relative overflow-hidden block">
+              <img
+                src={art.image}
+                alt={art.title}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                loading="lazy"
+              />
+              <span class="absolute top-3 left-3 bg-black/85 text-white text-[9px] uppercase tracking-wider font-extrabold px-2.5 py-1">
+                {art.category}
+              </span>
+            </a>
+
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex items-center justify-between text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-3">
+                <span>{art.date}</span>
+                <span>•</span>
+                <span>{art.readingTime}</span>
+              </div>
+
+              <h2 class="text-lg sm:text-xl font-bold uppercase tracking-tight text-gray-900 leading-snug mb-3 group-hover:text-[#EB0028] transition-colors">
+                <a href={`/blog/${art.slug}`}>
+                  {art.title}
+                </a>
+              </h2>
+
+              <p class="text-xs sm:text-sm text-gray-600 leading-relaxed mb-6 line-clamp-3">
+                {art.description}
+              </p>
+
+              <div class="mt-auto pt-4 border-t border-gray-100 flex items-center justify-between">
+                <a
+                  href={`/blog/${art.slug}`}
+                  class="text-xs font-bold uppercase tracking-wider text-black group-hover:text-[#EB0028] flex items-center gap-1.5 transition-colors"
+                >
+                  Read Full Guide
+                  <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Search Engine Callout Banner -->
+      <div class="mt-16 bg-[#1A1A1A] text-white p-8 sm:p-12 border border-gray-800 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div class="space-y-2 max-w-xl">
+          <p class="text-[10px] font-bold uppercase tracking-widest text-[#EB0028]">
+            Instant Discovery Engine
+          </p>
+          <h3 class="text-xl sm:text-2xl font-black uppercase tracking-tight">
+            Looking for talks on a specific topic?
+          </h3>
+          <p class="text-xs sm:text-sm text-gray-400">
+            Use our AI search engine to discover 4,000+ verified TED &amp; TEDx talks with instant YouTube playback and smart summaries.
+          </p>
+        </div>
+        <a
+          href="/"
+          class="shrink-0 bg-[#EB0028] hover:bg-[#c40020] text-white font-bold uppercase text-xs tracking-wider px-8 py-4 transition-colors"
+        >
+          Explore Search Engine →
+        </a>
+      </div>
+    </section>
+  </main>
+</Layout>

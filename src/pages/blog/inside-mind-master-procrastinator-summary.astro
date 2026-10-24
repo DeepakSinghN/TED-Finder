@@ -1,0 +1,218 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Inside the Mind of a Master Procrastinator: Complete Summary & Lessons by Tim Urban",
+  "description": "Comprehensive summary and actionable breakdown of Tim Urban's viral TED talk. Learn about the Instant Gratification Monkey, the Panic Monster, and the Life Calendar.",
+  "image": "https://img.youtube.com/vi/arj7oStGLkU/hqdefault.jpg",
+  "datePublished": "2026-10-24T00:00:00Z",
+  "dateModified": "2026-10-24T00:00:00Z",
+  "author": {
+    "@type": "Organization",
+    "name": "TED Talk Finder Editorial",
+    "url": "https://tedtalksfinder.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TED Talk Finder",
+    "url": "https://tedtalksfinder.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://tedtalksfinder.com/blog/inside-mind-master-procrastinator-summary"
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tedtalksfinder.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://tedtalksfinder.com/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Productivity & Mindset",
+      "item": "https://tedtalksfinder.com/blog/inside-mind-master-procrastinator-summary"
+    }
+  ]
+};
+---
+
+<Layout
+  title="Inside the Mind of a Master Procrastinator — Tim Urban Summary"
+  description="Read our complete breakdown of Tim Urban's viral TED talk 'Inside the mind of a master procrastinator'. Understand the Panic Monster and the Life Calendar."
+  canonicalUrl="https://tedtalksfinder.com/blog/inside-mind-master-procrastinator-summary"
+>
+  <Header activePage="blog" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <main class="flex-grow bg-white py-10 sm:py-16 px-4 sm:px-6 md:px-12">
+    <article class="max-w-4xl mx-auto">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="mb-6 text-[10px] sm:text-xs uppercase tracking-wider text-gray-500 font-semibold flex items-center gap-2">
+        <a href="/" class="hover:text-black">Home</a>
+        <span>/</span>
+        <a href="/blog" class="hover:text-black">Blog</a>
+        <span>/</span>
+        <span class="text-[#EB0028]">Productivity &amp; Habits</span>
+      </nav>
+
+      <!-- Article Header -->
+      <header class="border-b border-gray-200 pb-8 mb-10 space-y-4">
+        <span class="inline-block bg-black text-white text-[10px] uppercase tracking-wider font-extrabold px-3 py-1">
+          TED Talk Breakdown &amp; Analysis
+        </span>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-black leading-tight">
+          Inside the Mind of a Master Procrastinator: Complete Summary &amp; Lessons by Tim Urban
+        </h1>
+        <div class="flex flex-wrap items-center gap-4 text-xs text-gray-500 pt-2 font-medium">
+          <span>By <strong>TED Talk Finder Editorial</strong></span>
+          <span>•</span>
+          <time datetime="2026-10-24">October 24, 2026</time>
+          <span>•</span>
+          <span>8 min read</span>
+        </div>
+      </header>
+
+      <!-- Article Body -->
+      <div class="prose-content space-y-8 text-gray-800 text-sm sm:text-base leading-relaxed">
+        <p class="text-base sm:text-lg text-gray-700 leading-relaxed font-normal">
+          With over <strong>72 million views</strong> on YouTube, Tim Urban's <em>"Inside the mind of a master procrastinator"</em> is one of the most celebrated and widely shared TED talks in history. What begins as a hilarious confession of college paper all-nighters transforms into one of the most chilling philosophical insights into modern regret.
+        </p>
+
+        <!-- Talk Quick Stats Card -->
+        <div class="border border-gray-200 bg-gray-50 p-6 flex flex-wrap justify-between items-center gap-4">
+          <div>
+            <p class="text-[10px] uppercase tracking-widest text-[#EB0028] font-bold">Featured Presentation</p>
+            <h3 class="text-lg font-bold uppercase text-black">Inside the mind of a master procrastinator</h3>
+            <p class="text-xs text-gray-500">Speaker: Tim Urban (Writer &amp; Creator of Wait But Why)</p>
+          </div>
+          <a
+            href="https://www.youtube.com/watch?v=arj7oStGLkU"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="bg-[#EB0028] hover:bg-[#c40020] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+          >
+            Watch Video (14 min) →
+          </a>
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-black pt-4">
+          1. The Cast of Characters in the Procrastinator's Brain
+        </h2>
+        <p>
+          Urban illustrates that a non-procrastinator's brain has one clear pilot: the <strong>Rational Decision-Maker</strong>, who visualizes the future, sets strategic plans, and undertakes productive work.
+        </p>
+        <p>
+          In a procrastinator's brain, however, the Rational Decision-Maker coexists with an impulsive, untamed co-pilot: the <strong>Instant Gratification Monkey</strong>.
+        </p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-6">
+          <div class="border border-gray-200 p-5 bg-white space-y-2">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-black flex items-center gap-2">
+              <span class="text-[#EB0028]">🐵</span> The Instant Gratification Monkey
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              Lives strictly in the present moment. Has no memory of past failures and no concept of future consequences. Only cares about two things: <em>easy and fun</em>.
+            </p>
+          </div>
+
+          <div class="border border-gray-200 p-5 bg-white space-y-2">
+            <h3 class="text-sm font-bold uppercase tracking-wide text-black flex items-center gap-2">
+              <span class="text-[#EB0028]">🎪</span> The Dark Playground
+            </h3>
+            <p class="text-xs text-gray-600 leading-relaxed">
+              A place where leisure activities happen when leisure isn't supposed to be happening. The fun in the Dark Playground isn't actually fun — it is filled with guilt, anxiety, and self-loathing.
+            </p>
+          </div>
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-black pt-4">
+          2. Enter the Panic Monster
+        </h2>
+        <p>
+          The Instant Gratification Monkey has only one natural predator: the <strong>Panic Monster</strong>. The Panic Monster stays dormant until a deadline draws dangerously close, threatening public embarrassment, professional termination, or academic failure.
+        </p>
+        <p>
+          When the Panic Monster wakes up, the Monkey flees up a tree, allowing the Rational Decision-Maker to regain emergency control and finish the project in a chaotic, sleep-deprived sprint.
+        </p>
+
+        <h2 class="text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-black pt-4">
+          3. The Two Kinds of Procrastination (The Core Insight)
+        </h2>
+        <p>
+          Urban explains that when deadlines exist, the Panic Monster eventually intervenes, keeping the consequences contained to short-term stress.
+        </p>
+        <div class="border-l-4 border-[#EB0028] bg-gray-50 p-6 space-y-3">
+          <h3 class="text-base font-bold uppercase tracking-tight text-black">
+            The Danger of Uncontained Procrastination
+          </h3>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            In non-deadline situations — starting a business, writing a book, working on your physical health, leaving a toxic relationship, or spending time with aging parents — <strong>the Panic Monster never wakes up</strong>.
+          </p>
+          <p class="text-sm text-gray-700 leading-relaxed">
+            This uncontained procrastination is invisible from the outside. People suffering from it don't look stressed; they feel quiet, chronic dissatisfaction. They feel like spectators in their own lives.
+          </p>
+        </div>
+
+        <h2 class="text-2xl sm:text-3xl font-extrabold uppercase tracking-tight text-black pt-4">
+          4. The Life Calendar
+        </h2>
+        <p>
+          Urban closes his talk by presenting a visual <strong>Life Calendar</strong>: a single sheet with one small square for every week of a 90-year life. Looking at the grid makes it startlingly apparent that our remaining weeks are finite, precious, and slipping away.
+        </p>
+
+        <div class="bg-gray-50 border border-gray-200 p-6 space-y-3 my-4">
+          <h3 class="text-sm font-bold uppercase tracking-wider text-black">
+            3 Practical Steps to Neutralize the Monkey:
+          </h3>
+          <ol class="text-xs sm:text-sm text-gray-700 list-decimal list-inside space-y-2">
+            <li><strong>Impose Artificial Deadlines:</strong> When no external deadlines exist, establish public accountability with peers or mentors.</li>
+            <li><strong>Shrink the Activation Energy:</strong> Break intimidating projects down into microscopic tasks so simple that the Monkey does not protest.</li>
+            <li><strong>Inspect Your Life Calendar:</strong> Regularly remind yourself of the finite nature of time to awaken your intrinsic urgency.</li>
+          </ol>
+        </div>
+
+        <!-- Next Reads & Search Callout -->
+        <div class="bg-black text-white p-8 sm:p-10 border border-gray-900 mt-12 space-y-4">
+          <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight">
+            Discover More Talks on Focus &amp; Psychology
+          </h2>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Search our curated index of talks on procrastination, productivity, and psychology to build your personalized viewing plan.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-3">
+            <a
+              href="/?q=procrastination"
+              class="bg-[#EB0028] hover:bg-[#c40020] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+            >
+              Search "Procrastination" Talks →
+            </a>
+            <a
+              href="/blog"
+              class="border border-gray-700 hover:border-white text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+            >
+              Back to Blog Hub
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>

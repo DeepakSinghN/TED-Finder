@@ -1,0 +1,258 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "10 Best TED Talks About Philosophy and Life That Will Change Your Perspective",
+  "description": "Comprehensive guide to the greatest TED talks on philosophy, happiness, vulnerability, and meaning in life. Learn core takeaways from Brené Brown, Robert Waldinger, and Dan Gilbert.",
+  "image": "https://img.youtube.com/vi/iCvmsMzlF7o/hqdefault.jpg",
+  "datePublished": "2026-10-24T00:00:00Z",
+  "dateModified": "2026-10-24T00:00:00Z",
+  "author": {
+    "@type": "Organization",
+    "name": "TED Talk Finder Editorial",
+    "url": "https://tedtalksfinder.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TED Talk Finder",
+    "url": "https://tedtalksfinder.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://tedtalksfinder.com/blog/best-ted-talks-philosophy-life"
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tedtalksfinder.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://tedtalksfinder.com/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Philosophy & Life",
+      "item": "https://tedtalksfinder.com/blog/best-ted-talks-philosophy-life"
+    }
+  ]
+};
+---
+
+<Layout
+  title="10 Best TED Talks About Philosophy and Life (Mind-Shifting Talks)"
+  description="Looking for the best TED talks about philosophy and life? Here is our curated breakdown of talks by Brené Brown, Robert Waldinger, and Dan Gilbert with key takeaways."
+  canonicalUrl="https://tedtalksfinder.com/blog/best-ted-talks-philosophy-life"
+>
+  <Header activePage="blog" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <main class="flex-grow bg-white py-10 sm:py-16 px-4 sm:px-6 md:px-12">
+    <article class="max-w-4xl mx-auto">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="mb-6 text-[10px] sm:text-xs uppercase tracking-wider text-gray-500 font-semibold flex items-center gap-2">
+        <a href="/" class="hover:text-black">Home</a>
+        <span>/</span>
+        <a href="/blog" class="hover:text-black">Blog</a>
+        <span>/</span>
+        <span class="text-[#EB0028]">Philosophy &amp; Life</span>
+      </nav>
+
+      <!-- Article Header -->
+      <header class="border-b border-gray-200 pb-8 mb-10 space-y-4">
+        <span class="inline-block bg-black text-white text-[10px] uppercase tracking-wider font-extrabold px-3 py-1">
+          Philosophy &amp; Personal Growth
+        </span>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-black leading-tight">
+          10 Best TED Talks About Philosophy and Life That Will Change Your Perspective
+        </h1>
+        <div class="flex flex-wrap items-center gap-4 text-xs text-gray-500 pt-2 font-medium">
+          <span>By <strong>TED Talk Finder Editorial</strong></span>
+          <span>•</span>
+          <time datetime="2026-10-24">October 24, 2026</time>
+          <span>•</span>
+          <span>7 min read</span>
+        </div>
+      </header>
+
+      <!-- Article Body -->
+      <div class="prose-content space-y-8 text-gray-800 text-sm sm:text-base leading-relaxed">
+        <p class="text-base sm:text-lg text-gray-700 leading-relaxed font-normal">
+          Few mediums encapsulate human wisdom quite like a world-class TED presentation. If you are searching for the <strong>best TED talks about philosophy and life</strong>, you are not simply looking for motivation; you are looking for timeless mental frameworks to navigate adversity, understand happiness, and find purpose in an increasingly noisy world.
+        </p>
+
+        <p>
+          Below, we have analyzed the highest-impact TED talks addressing the deepest questions of existence, resilience, and human connection — complete with core takeaways and direct links to watch each talk on YouTube.
+        </p>
+
+        <!-- Talk 1 -->
+        <section class="border border-gray-200 p-6 sm:p-8 bg-gray-50 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-4">
+            <div>
+              <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#EB0028]">Talk #1</span>
+              <h2 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black mt-1">
+                The Power of Vulnerability — Brené Brown
+              </h2>
+            </div>
+            <span class="text-xs font-bold text-gray-500">20 min • 65M+ Views</span>
+          </div>
+
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Research professor Brené Brown spent a decade studying human connection, empathy, and shame. In this landmark presentation, she unveils that individuals who possess a strong sense of love and belonging share one fundamental trait: the courage to be imperfect and the willingness to embrace vulnerability.
+          </p>
+
+          <div class="bg-white border border-gray-200 p-4 space-y-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-black">Core Philosophical Takeaways:</h3>
+            <ul class="text-xs sm:text-sm text-gray-700 list-disc list-inside space-y-1">
+              <li>Vulnerability is not weakness; it is the birthplace of innovation, creativity, and love.</li>
+              <li>You cannot selectively numb emotion; numbing pain and uncertainty inevitably numbs joy, gratitude, and belonging.</li>
+              <li>Living "wholeheartedly" requires letting go of who you think you should be in order to be who you are.</li>
+            </ul>
+          </div>
+
+          <a
+            href="https://www.youtube.com/watch?v=iCvmsMzlF7o"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-[#EB0028] hover:bg-[#c40020] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+          >
+            Watch Brené Brown on YouTube →
+          </a>
+        </section>
+
+        <!-- Talk 2 -->
+        <section class="border border-gray-200 p-6 sm:p-8 bg-gray-50 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-4">
+            <div>
+              <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#EB0028]">Talk #2</span>
+              <h2 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black mt-1">
+                What Makes a Good Life? Lessons from the Longest Study on Happiness — Robert Waldinger
+              </h2>
+            </div>
+            <span class="text-xs font-bold text-gray-500">13 min • 48M+ Views</span>
+          </div>
+
+          <p class="text-sm text-gray-700 leading-relaxed">
+            As director of the 75-year Harvard Study of Adult Development, Robert Waldinger had access to unprecedented data tracking 724 men from adolescence into old age. The central finding of the longest longitudinal study on happiness contradicts modern hustle culture: wealth, fame, and working hard do not keep us healthy and happy. Good relationships do.
+          </p>
+
+          <div class="bg-white border border-gray-200 p-4 space-y-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-black">Core Philosophical Takeaways:</h3>
+            <ul class="text-xs sm:text-sm text-gray-700 list-disc list-inside space-y-1">
+              <li>Social connections are deeply beneficial, while toxic loneliness acts as a physical toxin that shortens life expectancy.</li>
+              <li>It is not the quantity of friends that counts, but the emotional safety and depth of close relationships.</li>
+              <li>Living in the midst of warm, supportive conflict-free relationships protects our physical brains from cognitive decline.</li>
+            </ul>
+          </div>
+
+          <a
+            href="https://www.youtube.com/watch?v=8KkKuTCFvzI"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-[#EB0028] hover:bg-[#c40020] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+          >
+            Watch Robert Waldinger on YouTube →
+          </a>
+        </section>
+
+        <!-- Talk 3 -->
+        <section class="border border-gray-200 p-6 sm:p-8 bg-gray-50 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-4">
+            <div>
+              <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#EB0028]">Talk #3</span>
+              <h2 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black mt-1">
+                The Surprising Science of Happiness — Dan Gilbert
+              </h2>
+            </div>
+            <span class="text-xs font-bold text-gray-500">21 min • 20M+ Views</span>
+          </div>
+
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Harvard psychologist Dan Gilbert challenges the assumption that getting what we want makes us happier. He demonstrates how humans possess a "psychological immune system" that synthesizes happiness even when external circumstances do not go according to plan.
+          </p>
+
+          <div class="bg-white border border-gray-200 p-4 space-y-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-black">Core Philosophical Takeaways:</h3>
+            <ul class="text-xs sm:text-sm text-gray-700 list-disc list-inside space-y-1">
+              <li>Synthetic happiness (what we manufacture when we don't get what we wanted) is just as real and enduring as natural happiness.</li>
+              <li>Unconstrained freedom to change your mind actually works against psychological contentment.</li>
+              <li>Our brains systematically overestimate the intensity and duration of future emotional suffering.</li>
+            </ul>
+          </div>
+
+          <a
+            href="https://www.youtube.com/watch?v=4q1dgn_C0AU"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-[#EB0028] hover:bg-[#c40020] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+          >
+            Watch Dan Gilbert on YouTube →
+          </a>
+        </section>
+
+        <!-- Talk 4 -->
+        <section class="border border-gray-200 p-6 sm:p-8 bg-gray-50 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-4">
+            <div>
+              <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#EB0028]">Talk #4</span>
+              <h2 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black mt-1">
+                Inside the Mind of a Master Procrastinator — Tim Urban
+              </h2>
+            </div>
+            <span class="text-xs font-bold text-gray-500">14 min • 72M+ Views</span>
+          </div>
+
+          <p class="text-sm text-gray-700 leading-relaxed">
+            While widely known for its hilarity, Tim Urban's talk concludes on one of the most sobering philosophical insights ever delivered on the TED stage: the difference between deadline-driven procrastination and unprompted, long-term procrastination in career and personal relationships.
+          </p>
+
+          <a
+            href="/blog/inside-mind-master-procrastinator-summary"
+            class="inline-block bg-black hover:bg-[#EB0028] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+          >
+            Read Our In-Depth Tim Urban Breakdown →
+          </a>
+        </section>
+
+        <!-- How to Discover More -->
+        <div class="bg-black text-white p-8 sm:p-10 border border-gray-900 mt-12 space-y-4">
+          <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight">
+            Explore More Philosophy &amp; Life Talks
+          </h2>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Want to explore more talks on stoicism, existential meaning, or resilience? Our search engine indexes 4,000+ verified talks directly from official TED and TEDx channels.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-3">
+            <a
+              href="/?q=philosophy+and+life"
+              class="bg-[#EB0028] hover:bg-[#c40020] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+            >
+              Search "Philosophy &amp; Life" Talks →
+            </a>
+            <a
+              href="/path"
+              class="border border-gray-700 hover:border-white text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+            >
+              Generate AI Learning Path
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>

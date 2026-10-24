@@ -1,0 +1,225 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "7 Best TED Talks About Communication, Public Speaking & Active Listening",
+  "description": "Master verbal clarity, body language, and deep listening with the best TED talks about communication. Featuring Julian Treasure, Amy Cuddy, and Celeste Headlee.",
+  "image": "https://img.youtube.com/vi/eIho2S0ZahI/hqdefault.jpg",
+  "datePublished": "2026-10-24T00:00:00Z",
+  "dateModified": "2026-10-24T00:00:00Z",
+  "author": {
+    "@type": "Organization",
+    "name": "TED Talk Finder Editorial",
+    "url": "https://tedtalksfinder.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TED Talk Finder",
+    "url": "https://tedtalksfinder.com/"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://tedtalksfinder.com/blog/best-ted-talks-communication"
+  }
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "https://tedtalksfinder.com"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://tedtalksfinder.com/blog"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Communication",
+      "item": "https://tedtalksfinder.com/blog/best-ted-talks-communication"
+    }
+  ]
+};
+---
+
+<Layout
+  title="7 Best TED Talks About Communication & Active Listening (Ranked)"
+  description="Discover the best TED talks about communication to transform your speaking, active listening, and executive presence. Featuring Julian Treasure and Celeste Headlee."
+  canonicalUrl="https://tedtalksfinder.com/blog/best-ted-talks-communication"
+>
+  <Header activePage="blog" />
+
+  <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+
+  <main class="flex-grow bg-white py-10 sm:py-16 px-4 sm:px-6 md:px-12">
+    <article class="max-w-4xl mx-auto">
+      <!-- Breadcrumb -->
+      <nav aria-label="Breadcrumb" class="mb-6 text-[10px] sm:text-xs uppercase tracking-wider text-gray-500 font-semibold flex items-center gap-2">
+        <a href="/" class="hover:text-black">Home</a>
+        <span>/</span>
+        <a href="/blog" class="hover:text-black">Blog</a>
+        <span>/</span>
+        <span class="text-[#EB0028]">Communication</span>
+      </nav>
+
+      <!-- Article Header -->
+      <header class="border-b border-gray-200 pb-8 mb-10 space-y-4">
+        <span class="inline-block bg-black text-white text-[10px] uppercase tracking-wider font-extrabold px-3 py-1">
+          Communication &amp; Public Speaking
+        </span>
+        <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold uppercase tracking-tight text-black leading-tight">
+          7 Best TED Talks About Communication, Public Speaking &amp; Active Listening
+        </h1>
+        <div class="flex flex-wrap items-center gap-4 text-xs text-gray-500 pt-2 font-medium">
+          <span>By <strong>TED Talk Finder Editorial</strong></span>
+          <span>•</span>
+          <time datetime="2026-10-24">October 24, 2026</time>
+          <span>•</span>
+          <span>6 min read</span>
+        </div>
+      </header>
+
+      <!-- Article Body -->
+      <div class="prose-content space-y-8 text-gray-800 text-sm sm:text-base leading-relaxed">
+        <p class="text-base sm:text-lg text-gray-700 leading-relaxed font-normal">
+          Whether you are delivering a keynote, pitching an investor, or having a delicate conversation with a colleague, communication is the single highest-leverage skill in the modern world. If you are looking for the <strong>best TED talks about communication</strong>, you are in good company — millions of executives, researchers, and learners watch these talks each month to refine their conversational mastery.
+        </p>
+
+        <p>
+          Here are the most authoritative TED talks on vocal authority, posture, active listening, and interpersonal connection.
+        </p>
+
+        <!-- Talk 1 -->
+        <section class="border border-gray-200 p-6 sm:p-8 bg-gray-50 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-4">
+            <div>
+              <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#EB0028]">Talk #1</span>
+              <h2 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black mt-1">
+                How to Speak So That People Want to Listen — Julian Treasure
+              </h2>
+            </div>
+            <span class="text-xs font-bold text-gray-500">10 min • 53M+ Views</span>
+          </div>
+
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Sound and acoustic expert Julian Treasure breaks down why people often tune us out and provides a simple, actionable toolkit for commanding respect without shouting. He introduces the four cornerstones of powerful speech under the acronym <strong>HAIL</strong>: Honesty, Authenticity, Integrity, and Love.
+          </p>
+
+          <div class="bg-white border border-gray-200 p-4 space-y-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-black">Core Takeaways:</h3>
+            <ul class="text-xs sm:text-sm text-gray-700 list-disc list-inside space-y-1">
+              <li>Avoid the 7 deadly sins of speaking: gossip, judging, negativity, complaining, excuses, exaggeration, and dogmatism.</li>
+              <li>Harness the vocal engine: master register (speaking from the chest), timbre, prosody, pace, and strategic silence.</li>
+              <li>Silence is not dead air; pausing conveys immense poise and commands audience focus.</li>
+            </ul>
+          </div>
+
+          <a
+            href="https://www.youtube.com/watch?v=eIho2S0ZahI"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-[#EB0028] hover:bg-[#c40020] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+          >
+            Watch Julian Treasure on YouTube →
+          </a>
+        </section>
+
+        <!-- Talk 2 -->
+        <section class="border border-gray-200 p-6 sm:p-8 bg-gray-50 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-4">
+            <div>
+              <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#EB0028]">Talk #2</span>
+              <h2 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black mt-1">
+                10 Ways to Have a Better Conversation — Celeste Headlee
+              </h2>
+            </div>
+            <span class="text-xs font-bold text-gray-500">12 min • 33M+ Views</span>
+          </div>
+
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Seasoned radio host Celeste Headlee emphasizes that conversation requires a balance between talking and listening, an art which many of us have lost in the age of texting and social media polarization.
+          </p>
+
+          <div class="bg-white border border-gray-200 p-4 space-y-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-black">Core Takeaways:</h3>
+            <ul class="text-xs sm:text-sm text-gray-700 list-disc list-inside space-y-1">
+              <li>Don't multitask: be present in the moment or don't engage.</li>
+              <li>Use open-ended questions: start with Who, What, Where, When, Why, or How.</li>
+              <li>Don't equate your experience with theirs: if they talk about losing a parent, don't hijack the moment with your story. It's not about you.</li>
+            </ul>
+          </div>
+
+          <a
+            href="https://www.youtube.com/watch?v=R1vskiVDwl4"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-[#EB0028] hover:bg-[#c40020] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+          >
+            Watch Celeste Headlee on YouTube →
+          </a>
+        </section>
+
+        <!-- Talk 3 -->
+        <section class="border border-gray-200 p-6 sm:p-8 bg-gray-50 space-y-4">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-gray-200 pb-4">
+            <div>
+              <span class="text-[10px] font-extrabold uppercase tracking-widest text-[#EB0028]">Talk #3</span>
+              <h2 class="text-xl sm:text-2xl font-bold uppercase tracking-tight text-black mt-1">
+                Your Body Language May Shape Who You Are — Amy Cuddy
+              </h2>
+            </div>
+            <span class="text-xs font-bold text-gray-500">21 min • 70M+ Views</span>
+          </div>
+
+          <p class="text-sm text-gray-700 leading-relaxed">
+            Nonverbal communication doesn't just inform how listeners perceive you; it fundamentally impacts how you perceive yourself. Amy Cuddy demonstrates how holding expansive postures ("power posing") for two minutes prior to high-stakes meetings reduces cortisol and increases confidence.
+          </p>
+
+          <a
+            href="https://www.youtube.com/watch?v=Ks-_Mh1QhMc"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block bg-[#EB0028] hover:bg-[#c40020] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+          >
+            Watch Amy Cuddy on YouTube →
+          </a>
+        </section>
+
+        <!-- Call to Action -->
+        <div class="bg-black text-white p-8 sm:p-10 border border-gray-900 mt-12 space-y-4">
+          <h2 class="text-xl sm:text-2xl font-black uppercase tracking-tight">
+            Find Hundreds of Communication Talks Instantly
+          </h2>
+          <p class="text-gray-400 text-sm leading-relaxed">
+            Looking for talks on storytelling, active listening, or overcoming social anxiety? Use our AI search engine to uncover talks curated directly from official TED sources.
+          </p>
+          <div class="pt-2 flex flex-wrap gap-3">
+            <a
+              href="/?q=communication"
+              class="bg-[#EB0028] hover:bg-[#c40020] text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+            >
+              Search "Communication" Talks →
+            </a>
+            <a
+              href="/blog/best-ted-talks-philosophy-life"
+              class="border border-gray-700 hover:border-white text-white text-xs font-bold uppercase tracking-wider px-6 py-3 transition-colors"
+            >
+              Read: Philosophy &amp; Life Talks
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+  </main>
+</Layout>
